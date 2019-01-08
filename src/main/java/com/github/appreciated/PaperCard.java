@@ -49,16 +49,16 @@ public class PaperCard extends Component implements HasComponents, FlexComponent
         return getElement().getAttribute("alt");
     }
 
-    public void setAlt(String path) {
-        getElement().setAttribute("alt", path);
+    public void setAlt(String alt) {
+        getElement().setAttribute("alt", alt);
     }
 
     public String getHeading() {
         return getElement().getAttribute("heading");
     }
 
-    public void setHeading(String path) {
-        getElement().setAttribute("heading", path);
+    public void setHeading(String heading) {
+        getElement().setAttribute("heading", heading);
     }
 
     /**

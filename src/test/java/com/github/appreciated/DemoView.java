@@ -24,6 +24,9 @@ public class DemoView extends VerticalLayout {
                 getClickableCard(false),
                 getClickableCard(true),
                 getClickableCard(true),
+                getClickableImageCard(false),
+                getClickableImageCard(true),
+                getClickableImageCard(true),
                 new Item("Test text"),
                 new Item("Test title", "Test description"),
                 new IconItem(getIcon(), "Test text"),
@@ -57,6 +60,13 @@ public class DemoView extends VerticalLayout {
         card.setElevation(currentElevation2++);
         return card;
     }
+
+    private ClickablePaperCard getClickableImageCard(boolean hasAction) {
+        ClickablePaperCard card = getClickableCard(hasAction);
+        card.setImage("/frontend/bg.png");
+        return card;
+    }
+
 
     private Component getCardUnselectableContent() {
         return new IconItem(getIcon(), "Normal Card", "I can normal card. I show content and provide some actions below");

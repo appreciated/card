@@ -55,6 +55,30 @@ public class ClickablePaperCard extends PolymerTemplate<TemplateModel> implement
         }
     }
 
+    public String getImage() {
+        return card.getImage();
+    }
+
+    public void setImage(String path) {
+        card.setImage(path);
+    }
+
+    public String getAlt() {
+        return card.getAlt();
+    }
+
+    public void setAlt(String alt) {
+        card.setAlt(alt);
+    }
+
+    public String getHeading() {
+        return card.getHeading();
+    }
+
+    public void setHeading(String heading) {
+        card.setHeading(heading);
+    }
+
 
     @Override
     public void add(Component... components) {
@@ -65,7 +89,7 @@ public class ClickablePaperCard extends PolymerTemplate<TemplateModel> implement
      * @param elevation
      */
     public void setElevation(int elevation) {
-        if (elevation < 5 && elevation >= 0)
+        if (elevation < 4 && elevation >= 0)
             card.getElement().setProperty("elevation", elevation);
     }
 }
