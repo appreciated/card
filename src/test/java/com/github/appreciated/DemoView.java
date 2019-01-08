@@ -13,25 +13,34 @@ import com.vaadin.flow.router.Route;
 public class DemoView extends VerticalLayout {
 
     static int currentElevation = 0;
+    static int currentElevation2 = 0;
 
     public DemoView() {
 
-        add(getCard(),
-                getCard(),
-                getCard(),
-                getCard(),
-                getCard(),
-                getCard(),
+        add(getCard(false),
+                getCard(true),
+                getCard(true),
+                getClickableCard(false),
+                getClickableCard(true),
+                getClickableCard(true),
                 new PaperItem("Test text"),
                 new PaperIconItem(VaadinIcon.ANGLE_LEFT.create(), "Test text"),
                 new PaperIconItem(VaadinIcon.ANGLE_LEFT.create(), "Test Title", "Test Description")
         );
     }
 
-    private PaperCard getCard() {
-        PaperCard card = new PaperCard(getCardContent(), getCardActions());
+    private PaperCard getCard(boolean hasAction) {
+        PaperCard card =
+                hasAction ? new PaperCard(getCardContent(), getCardActions()) : new PaperCard(getCardContent());
         card.setWidth("300px");
         card.setElevation(currentElevation++);
+        return card;
+    }
+
+    private ClickablePaperCard getClickableCard(boolean hasAction) {
+        ClickablePaperCard card = hasAction ? new ClickablePaperCard(getCardContent(), getCardActions()) : new ClickablePaperCard(getCardContent());
+        card.setWidth("300px");
+        card.setElevation(currentElevation2++);
         return card;
     }
 

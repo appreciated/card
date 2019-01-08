@@ -1,0 +1,56 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+ref="..
+
+<link href="../../../../../bower_components/paper-card/paper-card.html" rel="import">
+
+<dom-module id="clickable-paper-card">
+    <template>
+        <!--
+          --paper-material-elevation-1_-_box-shadow: var(--lumo-box-shadow-s);
+          --paper-material-elevation-3_-_box-shadow: var(--lumo-box-shadow-l);
+          --paper-material-elevation-2_-_box-shadow: var(--lumo-box-shadow-m);;
+          -->
+        <style>
+            #card {
+                transition: box-shadow 0.7s ease;
+                width: 100%;
+                height: 100%;
+            }
+
+            #card:hover {
+                box-shadow: var(--lumo-box-shadow-s) !important;
+            }
+
+            #card[elevation="1"]:hover {
+                box-shadow: var(--lumo-box-shadow-m) !important;
+            }
+
+            #card[elevation="2"]:hover {
+                box-shadow: var(--lumo-box-shadow-l) !important;
+            }
+
+            #card[elevation="3"]:hover {
+                box-shadow: var(--lumo-box-shadow-xl) !important;
+            }
+        </style>
+        <paper-card id="card">
+        </paper-card>
+    </template>
+    <script>
+        class ClickablePaperCard extends Polymer.Element {
+            static get is() {
+                return 'clickable-paper-card'
+            }
+        }
+
+        customElements.define(ClickablePaperCard.is, ClickablePaperCard);
+    </script>
+</dom-module>
