@@ -7,6 +7,8 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 
+import java.util.Objects;
+
 @Tag("paper-card")
 @HtmlImport("bower_components/paper-card/paper-card.html")
 public class PaperCard extends Component implements HasComponents, FlexComponent {
@@ -21,7 +23,7 @@ public class PaperCard extends Component implements HasComponents, FlexComponent
         this(content, null);
     }
 
-    public PaperCard(Component content, Component actions) {
+    public PaperCard(Component content, Component... actions) {
         getElement().getStyle()
                 .set("--paper-material-elevation-1_-_box-shadow", "var(--lumo-box-shadow-s)")
                 .set("--paper-material-elevation-2_-_box-shadow", "var(--lumo-box-shadow-m)")
@@ -33,6 +35,30 @@ public class PaperCard extends Component implements HasComponents, FlexComponent
         if (actions != null) {
             addAction(actions);
         }
+    }
+
+    public String getImage() {
+        return getElement().getAttribute("image");
+    }
+
+    public void setImage(String path) {
+        getElement().setAttribute("image", path);
+    }
+
+    public String getAlt() {
+        return getElement().getAttribute("alt");
+    }
+
+    public void setAlt(String path) {
+        getElement().setAttribute("alt", path);
+    }
+
+    public String getHeading() {
+        return getElement().getAttribute("heading");
+    }
+
+    public void setHeading(String path) {
+        getElement().setAttribute("heading", path);
     }
 
     /**
@@ -50,11 +76,6 @@ public class PaperCard extends Component implements HasComponents, FlexComponent
         return Integer.parseInt(getElement().getProperty("elevation"));
     }
 
-
-    public void setHeader(String header) {
-        getElement().setAttribute("heading", header);
-    }
-
     @Override
     public void add(Component... components) {
         if (content == null) {
@@ -66,6 +87,7 @@ public class PaperCard extends Component implements HasComponents, FlexComponent
     }
 
     public void addAction(Component... components) {
+        Objects.requireNonNull(components, "Components should not be null");
         if (actions == null) {
             actions = new Div();
             actions.getElement().getClassList().add("card-actions");
