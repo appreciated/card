@@ -3,7 +3,6 @@ package com.github.appreciated;
 import com.github.appreciated.item.IconItem;
 import com.github.appreciated.item.Item;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -37,7 +36,7 @@ public class DemoView extends VerticalLayout {
 
     private Card getCard(boolean hasAction) {
         Card card =
-                hasAction ? new Card(getCardUnselectableContent(), getCardActions()) : new Card(getCardUnselectableContent());
+                hasAction ? new Card(getCardUnselectableContent(), new ActionButton("Action 1"), new ActionButton("Action 2")) : new Card(getCardUnselectableContent());
         card.setWidth("300px");
         card.setHeader("TestHeading");
         card.setElevation(currentElevation++);
@@ -54,7 +53,7 @@ public class DemoView extends VerticalLayout {
     }
 
     private ClickableCard getClickableCard(boolean hasAction) {
-        ClickableCard card = hasAction ? new ClickableCard(getCardSelectableContent(), event -> Notification.show("Clicked!"), getCardActions()) : new ClickableCard(getCardSelectableContent(), event -> {
+        ClickableCard card = hasAction ? new ClickableCard(getCardSelectableContent(), event -> Notification.show("Clicked!"), new ActionButton("Action 1"), new ActionButton("Action 2")) : new ClickableCard(getCardSelectableContent(), event -> {
             Notification.show("Clicked!");
         });
         card.setWidth("300px");
@@ -76,13 +75,5 @@ public class DemoView extends VerticalLayout {
 
     private Component getCardSelectableContent() {
         return new IconItem(getIcon(), "Clickable Card", "I am a clickable card. I can be clicked, I show content and provide some actions below");
-    }
-
-    private Component[] getCardActions() {
-        Button b1 = new Button("Action 1");
-        b1.getElement().setAttribute("theme", "tertiary");
-        Button b2 = new Button("Action 2");
-        b2.getElement().setAttribute("theme", "tertiary");
-        return new Component[]{b1, b2};
     }
 }
