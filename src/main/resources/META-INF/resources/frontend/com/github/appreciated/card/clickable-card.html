@@ -1,0 +1,53 @@
+<dom-module id="clickable-card">
+    <template>
+        <style>
+            #card-content {
+                transition: box-shadow 0.35s ease;
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0);
+                border-radius: var(--lumo-border-radius);
+                overflow: hidden;
+                position: relative;
+            }
+
+            #card-content[elevation="1"] {
+                box-shadow: var(--lumo-box-shadow-s);
+            }
+
+            #card-content[elevation="2"] {
+                box-shadow: var(--lumo-box-shadow-m);
+            }
+
+            #card-content[elevation="3"] {
+                box-shadow: var(--lumo-box-shadow-l);
+            }
+
+            #card-content:hover {
+                box-shadow: var(--lumo-box-shadow-s);
+            }
+
+            #card-content[elevation="1"]:hover {
+                box-shadow: var(--lumo-box-shadow-m);
+            }
+
+            #card-content[elevation="2"]:hover {
+                box-shadow: var(--lumo-box-shadow-l);
+            }
+
+            #card-content[elevation="3"]:hover {
+                box-shadow: var(--lumo-box-shadow-xl);
+            }
+        </style>
+        <div id="card-content">
+            <slot>No components added</slot>
+        </div>
+    </template>
+    <script>
+        class ClickableCard extends Polymer.Element {
+            static get is() {
+                return 'clickable-card'
+            }
+        }
+
+        customElements.define(ClickableCard.is, ClickableCard);
+    </script>
+</dom-module>

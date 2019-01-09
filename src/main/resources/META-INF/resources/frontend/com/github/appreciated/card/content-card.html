@@ -1,0 +1,39 @@
+<dom-module id="content-card">
+    <template>
+        <style>
+            #card-content {
+                transition: box-shadow 0.35s ease;
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0);
+                border-radius: var(--lumo-border-radius);
+            }
+
+            #card-content[elevation="1"] {
+                box-shadow: var(--lumo-box-shadow-s);
+            }
+
+            #card-content[elevation="2"] {
+                box-shadow: var(--lumo-box-shadow-m);
+            }
+
+            #card-content[elevation="3"] {
+                box-shadow: var(--lumo-box-shadow-l);
+            }
+
+            #card-content[elevation="4"] {
+                box-shadow: var(--lumo-box-shadow-l);
+            }
+        </style>
+        <div id="card-content">
+            <slot>No components added</slot>
+        </div>
+    </template>
+    <script>
+        class Card extends Polymer.Element {
+            static get is() {
+                return 'content-card'
+            }
+        }
+
+        customElements.define(Card.is, Card);
+    </script>
+</dom-module>

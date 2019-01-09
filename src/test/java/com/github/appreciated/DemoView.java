@@ -4,6 +4,7 @@ import com.github.appreciated.item.IconItem;
 import com.github.appreciated.item.Item;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
@@ -34,11 +35,11 @@ public class DemoView extends VerticalLayout {
         );
     }
 
-    private PaperCard getCard(boolean hasAction) {
-        PaperCard card =
-                hasAction ? new PaperCard(getCardUnselectableContent(), getCardActions()) : new PaperCard(getCardUnselectableContent());
+    private Card getCard(boolean hasAction) {
+        Card card =
+                hasAction ? new Card(getCardUnselectableContent(), getCardActions()) : new Card(getCardUnselectableContent());
         card.setWidth("300px");
-        card.setHeading("TestHeading");
+        card.setHeader("TestHeading");
         card.setElevation(currentElevation++);
         return card;
     }
@@ -52,8 +53,8 @@ public class DemoView extends VerticalLayout {
         return icon;
     }
 
-    private ClickablePaperCard getClickableCard(boolean hasAction) {
-        ClickablePaperCard card = hasAction ? new ClickablePaperCard(getCardSelectableContent(), event -> Notification.show("Clicked!"), getCardActions()) : new ClickablePaperCard(getCardSelectableContent(), event -> {
+    private ClickableCard getClickableCard(boolean hasAction) {
+        ClickableCard card = hasAction ? new ClickableCard(getCardSelectableContent(), event -> Notification.show("Clicked!"), getCardActions()) : new ClickableCard(getCardSelectableContent(), event -> {
             Notification.show("Clicked!");
         });
         card.setWidth("300px");
@@ -61,9 +62,10 @@ public class DemoView extends VerticalLayout {
         return card;
     }
 
-    private ClickablePaperCard getClickableImageCard(boolean hasAction) {
-        ClickablePaperCard card = getClickableCard(hasAction);
-        card.setImage("/frontend/bg.png");
+    private ClickableCard getClickableImageCard(boolean hasAction) {
+        ClickableCard card = getClickableCard(hasAction);
+        card.setImage(new Image("/frontend/bg.png", "bg.png"));
+        card.setHeader("TestHeading");
         return card;
     }
 
