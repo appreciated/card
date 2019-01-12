@@ -46,6 +46,15 @@
             static get is() {
                 return 'clickable-card'
             }
+
+            stopPropagation(element) {
+                element.addEventListener('down', function (ev) {
+                    ev.stopPropagation();
+                })
+                element.addEventListener('click', function (ev) {
+                    ev.stopPropagation();
+                })
+            }
         }
 
         customElements.define(ClickableCard.is, ClickableCard);

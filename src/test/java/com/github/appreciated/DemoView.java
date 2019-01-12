@@ -1,7 +1,8 @@
 package com.github.appreciated;
 
+import com.github.appreciated.item.Actions;
 import com.github.appreciated.item.IconItem;
-import com.github.appreciated.item.Item;
+import com.github.appreciated.item.Title;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
@@ -18,27 +19,29 @@ public class DemoView extends VerticalLayout {
 
     public DemoView() {
 
-        add(getCard(false),
-                getCard(true),
-                getCard(true),
-                getClickableCard(false),
-                getClickableCard(true),
-                getClickableCard(true),
-                getClickableImageCard(false),
-                getClickableImageCard(true),
-                getClickableImageCard(true),
-                new Item("Test text"),
-                new Item("Test title", "Test description"),
-                new IconItem(getIcon(), "Test text"),
-                new IconItem(getIcon(), "Test Title", "Test Description")
+        add(
+                //getCard(false),
+//                getCard(true),
+//                getCard(true),
+//                getClickableCard(false),
+//                getClickableCard(true),
+                getClickableCard(true)
+//                getClickableImageCard(false),
+//                getClickableImageCard(true),
+//                getClickableImageCard(true),
+//                new Item("Test text"),
+//                new Item("Test title", "Test description"),
+//                new IconItem(getIcon(), "Test text"),
+//                new IconItem(getIcon(), "Test Title", "Test Description")
         );
     }
 
     private Card getCard(boolean hasAction) {
         Card card =
-                hasAction ? new Card(getCardUnselectableContent(), new ActionButton("Action 1"), new ActionButton("Action 2")) : new Card(getCardUnselectableContent());
+                hasAction ? new Card(new Title("Test Title"),
+                        new Image("/frontend/bg.png", "bg.png"), getCardUnselectableContent(), new Actions(new ActionButton("Action 1"), new ActionButton("Action 2"))) :
+                        new Card(getCardUnselectableContent());
         card.setWidth("300px");
-        card.setHeader("TestHeading");
         card.setElevation(currentElevation++);
         return card;
     }
@@ -53,19 +56,27 @@ public class DemoView extends VerticalLayout {
     }
 
     private ClickableCard getClickableCard(boolean hasAction) {
-        ClickableCard card = hasAction ? new ClickableCard(getCardSelectableContent(), event -> Notification.show("Clicked!"), new ActionButton("Action 1"), new ActionButton("Action 2")) : new ClickableCard(getCardSelectableContent(), event -> {
+        ClickableCard card = hasAction ? new ClickableCard(event -> Notification.show("Clicked!"), getCardSelectableContent(), getActions()) : new ClickableCard(event -> {
             Notification.show("Clicked!");
-        });
+        }, getCardSelectableContent());
         card.setWidth("300px");
         card.setElevation(currentElevation2++);
         return card;
     }
 
     private ClickableCard getClickableImageCard(boolean hasAction) {
-        ClickableCard card = getClickableCard(hasAction);
-        card.setImage(new Image("/frontend/bg.png", "bg.png"));
-        card.setHeader("TestHeading");
+        ClickableCard card = hasAction ? new ClickableCard(event -> Notification.show("Clicked!"), new Image("/frontend/bg.png", "bg.png"), getCardSelectableContent(), new Actions(new ActionButton("Action 1"), new ActionButton("Action 2"))) :
+                new ClickableCard(event -> Notification.show("Clicked!"), getCardSelectableContent());
+        card.setWidth("300px");
+        card.setElevation(currentElevation2++);
         return card;
+    }
+
+    private Actions getActions() {
+        ActionButton action1 = new ActionButton("Action 1", buttonClickEvent -> Notification.show("Action 1 clicked"));
+        action1.setId("v-button-1");
+        ActionButton action2 = new ActionButton("Action 2", buttonClickEvent -> Notification.show("Action 2 clicked"));
+        return new Actions(action1, action2);
     }
 
 

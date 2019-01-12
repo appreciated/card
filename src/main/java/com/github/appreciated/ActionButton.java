@@ -5,6 +5,9 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
 
+/**
+ * Convenience Button class which simply contains all the Constructors of the {@link Button} parent class
+ */
 public class ActionButton extends Button {
 
     public ActionButton() {
