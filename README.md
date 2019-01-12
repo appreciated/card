@@ -1,6 +1,6 @@
 # Card
 
-A Component that is similar to to https://github.com/PolymerElements/paper-card but was recreated due to several limitation of the webcomponent for Vaadin 10 Java.
+A Component that is similar to https://github.com/PolymerElements/paper-card but was recreated due to several limitations of the Webcomponent for Vaadin 10 Java.
 
 ## Development instructions
 
