@@ -1,11 +1,15 @@
 package com.github.appreciated.card.content;
 
+import com.github.appreciated.card.label.PrimaryLabel;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+
 
 public class Item extends HorizontalLayout {
 
     public Item() {
+        setMargin(false);
+        setPadding(false);
     }
 
     public Item(Component... component) {
@@ -14,8 +18,7 @@ public class Item extends HorizontalLayout {
     }
 
     public Item(String text) {
-        this();
-        getElement().setText(text);
+        this(new PrimaryLabel(text));
     }
 
     public Item(String title, String description) {

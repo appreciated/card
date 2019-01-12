@@ -6,6 +6,7 @@ import com.github.appreciated.card.RippleClickableCard;
 import com.github.appreciated.card.action.ActionButton;
 import com.github.appreciated.card.action.Actions;
 import com.github.appreciated.card.content.IconItem;
+import com.github.appreciated.card.content.Item;
 import com.github.appreciated.card.content.Title;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Image;
@@ -55,7 +56,7 @@ public class DemoView extends VerticalLayout {
     private Card getCard(boolean hasAction) {
         Card card =
                 hasAction ? new Card(new Title("Test Title"),
-                        new Image("/frontend/bg.png", "bg.png"), getCardUnselectableContent(), new Actions(new ActionButton("Action 1"), new ActionButton("Action 2"))) :
+                        new Image("/frontend/bg.png", "bg.png"), getCardUnselectableContent(), getActions()) :
                         new Card(getCardUnselectableContent());
         card.setWidth("300px");
         card.setElevation(currentElevation++);
@@ -89,12 +90,11 @@ public class DemoView extends VerticalLayout {
     }
 
     private Actions getActions() {
-        ActionButton action1 = new ActionButton("Action 1", buttonClickEvent -> Notification.show("Action 1 clicked"));
-        action1.setId("v-button-1");
-        ActionButton action2 = new ActionButton("Action 2", buttonClickEvent -> Notification.show("Action 2 clicked"));
-        return new Actions(action1, action2);
+        return new Actions(
+                new ActionButton("Action 1", buttonClickEvent -> Notification.show("Action 1 clicked")),
+                new ActionButton("Action 2", buttonClickEvent -> Notification.show("Action 2 clicked"))
+        );
     }
-
 
     private Component getCardUnselectableContent() {
         return new IconItem(getIcon(), "Normal Card", "I can normal card. I show content and provide some actions below");
@@ -104,8 +104,8 @@ public class DemoView extends VerticalLayout {
         return new IconItem(getIcon(), "Clickable Card", "I am a clickable card. I can be clicked, I show content and provide some actions below");
     }
 
-    private Component getClickableImageCardContent() {
-        return new Image("/frontend/bg.png", "bg.png");
+    private Component[] getClickableImageCardContent() {
+        return new Component[]{new Image("/frontend/bg.png", "bg.png"), new Item("Clickable Image Card")};
     }
 
     private Component[] getClickableImageCardActionContent() {
