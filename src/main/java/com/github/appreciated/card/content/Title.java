@@ -13,6 +13,6 @@ public class Title extends Label {
     }
 
     private void init() {
-        getElement().getStyle().set("padding", "0 var(--lumo-space-m) var(--lumo-space-s) var(--lumo-space-m)");
+        getStyle().set("font-size", "var(--lumo-font-size-xl)");
     }
 }

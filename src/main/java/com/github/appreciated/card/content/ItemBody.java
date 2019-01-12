@@ -1,8 +1,9 @@
 package com.github.appreciated.card.content;
 
+import com.github.appreciated.card.label.PrimaryLabel;
+import com.github.appreciated.card.label.SecondaryLabel;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 public class ItemBody extends VerticalLayout implements HasComponents {
@@ -12,13 +13,7 @@ public class ItemBody extends VerticalLayout implements HasComponents {
 
     public ItemBody(String title, String description) {
         this();
-        Label titleLabel = new Label(title);
-        titleLabel.getStyle()
-                .set("font-size", "var(--lumo-font-size-m)")
-                .set("font-weight", "500");
-        Label descriptionLabel = new Label(description);
-        descriptionLabel.getStyle().set("font-size", "var(--lumo-font-size-s)");
-        add(titleLabel, descriptionLabel);
+        add(new PrimaryLabel(title), new SecondaryLabel(description));
     }
 
     public ItemBody() {
