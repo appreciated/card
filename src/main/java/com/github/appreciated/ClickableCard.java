@@ -59,7 +59,7 @@ public class ClickableCard extends AbstractCard implements ClickNotifier {
                 }
             }
             if (ignoredClasses.contains(component.getClass())) {
-                preventComponentEventPropagation(component);
+                preventElementEventPropagation(component);
             }
         });
     }
@@ -77,7 +77,7 @@ public class ClickableCard extends AbstractCard implements ClickNotifier {
     /**
      * Prevent the Component to sent its
      */
-    private void preventComponentEventPropagation(Component component) {
-        getElement().callFunction("stopPropagation", component.getElement());
+    private void preventElementEventPropagation(Component component) {
+        getElement().callFunction("preventElementEventPropagation", component.getElement());
     }
 }

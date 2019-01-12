@@ -47,7 +47,7 @@
                 return 'clickable-card'
             }
 
-            stopPropagation(element) {
+            preventElementEventPropagation(element) {
                 element.addEventListener('down', function (ev) {
                     ev.stopPropagation();
                 })
@@ -56,7 +56,6 @@
                 })
             }
         }
-
         customElements.define(ClickableCard.is, ClickableCard);
     </script>
 </dom-module>
