@@ -1,4 +1,4 @@
-package com.github.appreciated;
+package com.github.appreciated.card.action;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;

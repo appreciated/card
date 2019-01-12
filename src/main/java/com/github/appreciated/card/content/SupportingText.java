@@ -1,13 +1,14 @@
-package com.github.appreciated.item;
+package com.github.appreciated.card.content;
+
 
 import com.vaadin.flow.component.html.Label;
 
-public class Title extends Label {
-    public Title() {
+public class SupportingText extends Label {
+    public SupportingText() {
         init();
     }
 
-    public Title(String text) {
+    public SupportingText(String text) {
         super(text);
         init();
     }

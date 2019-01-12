@@ -1,4 +1,4 @@
-package com.github.appreciated;
+package com.github.appreciated.card;
 
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.Component;
@@ -12,19 +12,18 @@ import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.dom.ElementFactory;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
-public abstract class AbstractCard extends PolymerTemplate<TemplateModel> implements HasComponents, FlexComponent, ClickNotifier {
+public abstract class AbstractCard<T extends AbstractCard> extends PolymerTemplate<TemplateModel> implements HasComponents, FlexComponent, ClickNotifier {
     private final Element contentDiv;
     private VerticalLayout contentHolder;
     @Id("card-content")
     private Div content;
-    private Component headerComponent;
-    private String header;
 
     public AbstractCard() {
         this(null, null);
     }
 
     public AbstractCard(Component... components) {
+        setElevation(1);
         contentDiv = ElementFactory.createDiv();
         getElement().appendChild(contentDiv);
         contentHolder = new VerticalLayout();
@@ -39,6 +38,11 @@ public abstract class AbstractCard extends PolymerTemplate<TemplateModel> implem
      */
     public int getElevation() {
         return Integer.parseInt(getElement().getAttribute("elevation"));
+    }
+
+    public T withElevation(int elevation) {
+        setElevation(elevation);
+        return (T) this;
     }
 
     /**

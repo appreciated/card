@@ -1,10 +1,10 @@
-package com.github.appreciated;
+package com.github.appreciated.card;
 
+import com.github.appreciated.card.action.ActionButton;
 import com.github.appreciated.ripple.PaperRipple;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.shared.Registration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,34 +12,34 @@ import java.util.stream.Stream;
 
 @Tag("clickable-card")
 @HtmlImport("frontend://com/github/appreciated/card/clickable-card.html")
-public class ClickableCard extends AbstractCard implements ClickNotifier {
+public class RippleClickableCard extends ClickableCard implements ClickNotifier {
 
     private List<Class> ignoredClasses;
 
-    public ClickableCard() {
+    public RippleClickableCard() {
         this(null);
     }
 
-    public ClickableCard(Component... components) {
+    public RippleClickableCard(Component... components) {
         this(null, components);
     }
 
-    public ClickableCard(ComponentEventListener listener, Component... components) {
+    public RippleClickableCard(ComponentEventListener listener, Component... components) {
         super(components);
-        if (listener != null) {
-            addClickListener(listener);
-        }
         PaperRipple ripple = new PaperRipple();
+        ripple.setColor("var(--lumo-shade-30pct)");
         ripple.getElement().getStyle().set("margin", "unset");
         add(ripple);
     }
 
-    public Registration addClickListener(ComponentEventListener listener) {
-        if (this instanceof Component) {
-            return ComponentUtil.addListener(getContent(), ClickEvent.class, listener);
-        } else {
-            throw new IllegalStateException(String.format("The class '%s' doesn't extend '%s'. Make your implementation for the method '%s'.", this.getClass().getName(), Component.class.getSimpleName(), "addClickListener"));
-        }
+    public RippleClickableCard withElevation(int elevation) {
+        super.setElevation(elevation);
+        return this;
+    }
+
+    public RippleClickableCard withElevationOnActionEnabled(boolean enabled) {
+        setElevationOnActionEnabled(enabled);
+        return this;
     }
 
     @Override
@@ -63,8 +63,8 @@ public class ClickableCard extends AbstractCard implements ClickNotifier {
     }
 
     /**
-     * Some JavaScripts events of a contained {@link Component} inside the {@link ClickableCard} need to be ignored.
-     * To make this happen every single Child {@link Component} will need to be prevented to sent the relevant events to the {@link ClickableCard}
+     * Some JavaScripts events of a contained {@link Component} inside the {@link RippleClickableCard} need to be ignored.
+     * To make this happen every single Child {@link Component} will need to be prevented to sent the relevant events to the {@link RippleClickableCard}
      *
      * @return
      */
@@ -79,12 +79,11 @@ public class ClickableCard extends AbstractCard implements ClickNotifier {
         getElement().callFunction("preventElementEventPropagation", component.getElement());
     }
 
-    public ClickableCard withElevationOnActionEnabled(boolean enabled) {
-        setElevationOnActionEnabled(enabled);
+    public RippleClickableCard withRippleEnabled(boolean enable) {
+        setRippleEnabled(enable);
         return this;
     }
 
-    public void setElevationOnActionEnabled(boolean enable) {
-        getElement().setProperty("enableElevate", enable);
+    public void setRippleEnabled(boolean enable) {
     }
 }

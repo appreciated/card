@@ -1,4 +1,4 @@
-package com.github.appreciated.item;
+package com.github.appreciated.card.content;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
