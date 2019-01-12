@@ -7,6 +7,11 @@
                 border-radius: var(--lumo-border-radius);
                 overflow: hidden;
                 position: relative;
+                user-select: none;
+            }
+
+            #card-content.touch {
+                transition: box-shadow 0.1s ease;
             }
 
             #card-content[elevation="1"] {
@@ -21,19 +26,35 @@
                 box-shadow: var(--lumo-box-shadow-l);
             }
 
-            #card-content:hover {
+            #card-content:not(.no-elevate).no-touch:hover {
                 box-shadow: var(--lumo-box-shadow-s);
             }
 
-            #card-content[elevation="1"]:hover {
+            #card-content[elevation="1"]:not(.no-elevate).no-touch:hover {
                 box-shadow: var(--lumo-box-shadow-m);
             }
 
-            #card-content[elevation="2"]:hover {
+            #card-content[elevation="2"]:not(.no-elevate).no-touch:hover {
                 box-shadow: var(--lumo-box-shadow-l);
             }
 
-            #card-content[elevation="3"]:hover {
+            #card-content[elevation="3"]:not(.no-elevate).no-touch:hover {
+                box-shadow: var(--lumo-box-shadow-xl);
+            }
+
+            #card-content:not(.no-elevate).touch:not(.no-elevate):active {
+                box-shadow: var(--lumo-box-shadow-s);
+            }
+
+            #card-content[elevation="1"]:not(.no-elevate).touch:active {
+                box-shadow: var(--lumo-box-shadow-m);
+            }
+
+            #card-content[elevation="2"]:not(.no-elevate).touch:active {
+                box-shadow: var(--lumo-box-shadow-l);
+            }
+
+            #card-content[elevation="3"]:not(.no-elevate).touch:active {
                 box-shadow: var(--lumo-box-shadow-xl);
             }
         </style>
@@ -43,8 +64,31 @@
     </template>
     <script>
         class ClickableCard extends Polymer.Element {
+
             static get is() {
                 return 'clickable-card'
+            }
+
+            static get properties() {
+                return {elevationEnabled: Boolean}
+            }
+
+            ready() {
+                super.ready();
+                if ("ontouchstart" in document.documentElement) {
+                    Polymer.dom(this.root).querySelector("#card-content").classList.add('touch');
+                } else {
+                    Polymer.dom(this.root).querySelector("#card-content").classList.add('no-touch');
+                }
+                if (this.elevationEnabled) {
+                    Polymer.dom(this.root).querySelector("#card-content").classList.remove('no-elevate');
+                } else {
+                    Polymer.dom(this.root).querySelector("#card-content").classList.add('no-elevate');
+                }
+            }
+
+            enableElevate(enable) {
+                this.elevationEnabled = enable;
             }
 
             preventElementEventPropagation(element) {
@@ -56,6 +100,7 @@
                 })
             }
         }
+
         customElements.define(ClickableCard.is, ClickableCard);
     </script>
 </dom-module>

@@ -14,8 +14,8 @@ import com.vaadin.flow.router.Route;
 @Route("")
 public class DemoView extends VerticalLayout {
 
-    static int currentElevation = 0;
-    static int currentElevation2 = 0;
+    int currentElevation = 0;
+    int currentElevation2 = 0;
 
     public DemoView() {
 
@@ -25,7 +25,8 @@ public class DemoView extends VerticalLayout {
 //                getCard(true),
 //                getClickableCard(false),
 //                getClickableCard(true),
-                getClickableCard(true)
+                getClickableCard(true),
+                getClickableCard(true).withElevationOnActionEnabled(false)
 //                getClickableImageCard(false),
 //                getClickableImageCard(true),
 //                getClickableImageCard(true),

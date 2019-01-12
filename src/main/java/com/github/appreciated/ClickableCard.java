@@ -53,13 +53,11 @@ public class ClickableCard extends AbstractCard implements ClickNotifier {
 
     private void checkPreventComponentEventPropagation(Stream<Component> components) {
         components.forEach(component -> {
-            if (component instanceof HasOrderedComponents) {
-                if (((HasOrderedComponents) component).getComponentCount() > 0) {
-                    checkPreventComponentEventPropagation(component.getChildren());
-                }
-            }
             if (ignoredClasses.contains(component.getClass())) {
                 preventElementEventPropagation(component);
+            } else if (component instanceof HasOrderedComponents &&
+                    ((HasOrderedComponents) component).getComponentCount() > 0) {
+                checkPreventComponentEventPropagation(component.getChildren());
             }
         });
     }
@@ -79,5 +77,14 @@ public class ClickableCard extends AbstractCard implements ClickNotifier {
      */
     private void preventElementEventPropagation(Component component) {
         getElement().callFunction("preventElementEventPropagation", component.getElement());
+    }
+
+    public ClickableCard withElevationOnActionEnabled(boolean enabled) {
+        setElevationOnActionEnabled(enabled);
+        return this;
+    }
+
+    public void setElevationOnActionEnabled(boolean enable) {
+        getElement().setProperty("enableElevate", enable);
     }
 }
