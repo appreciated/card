@@ -14,9 +14,11 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.BodySize;
 import com.vaadin.flow.router.Route;
 
 @Route("")
+@BodySize(width = "100%", height = "100%")
 public class DemoView extends VerticalLayout {
 
     int currentElevation = 0;
@@ -25,7 +27,7 @@ public class DemoView extends VerticalLayout {
     int currentElevation3 = 0;
 
     public DemoView() {
-
+        setMargin(false);
         add(
                 //getCard(false),
                 getCard(true),
@@ -73,9 +75,7 @@ public class DemoView extends VerticalLayout {
     }
 
     private ClickableCard getClickableCard(boolean hasAction) {
-        ClickableCard card = hasAction ? new ClickableCard(event -> Notification.show("Clicked!"), getCardSelectableContent(), getActions()) : new ClickableCard(event -> {
-            Notification.show("Clicked!");
-        }, getCardSelectableContent());
+        ClickableCard card = hasAction ? new ClickableCard(event -> Notification.show("Clicked!"), getCardSelectableContent(), getActions()) : new ClickableCard(event -> Notification.show("Clicked!"), getCardSelectableContent());
         card.setWidth("300px");
         card.setElevation(currentElevation1++);
         return card;

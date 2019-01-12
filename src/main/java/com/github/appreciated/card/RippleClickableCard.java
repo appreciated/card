@@ -7,13 +7,11 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 
-import java.util.List;
-
 @Tag("clickable-card")
 @HtmlImport("frontend://com/github/appreciated/card/clickable-card.html")
 public class RippleClickableCard extends ClickableCard implements ClickNotifier {
 
-    private List<Class> ignoredClasses;
+    private final PaperRipple ripple;
 
     public RippleClickableCard() {
         this(null);
@@ -24,8 +22,8 @@ public class RippleClickableCard extends ClickableCard implements ClickNotifier 
     }
 
     public RippleClickableCard(ComponentEventListener listener, Component... components) {
-        super(components);
-        PaperRipple ripple = new PaperRipple();
+        super(listener, components);
+        ripple = new PaperRipple();
         ripple.setColor("var(--lumo-shade-30pct)");
         ripple.getElement().getStyle().set("margin", "unset");
         add(ripple);
@@ -47,5 +45,14 @@ public class RippleClickableCard extends ClickableCard implements ClickNotifier 
     }
 
     public void setRippleEnabled(boolean enable) {
+        if (enable) {
+            ripple.getElement().getStyle().remove("pointer-events");
+        } else {
+            ripple.getElement().getStyle().set("pointer-events", "none");
+        }
+    }
+
+    public PaperRipple getRipple() {
+        return ripple;
     }
 }
