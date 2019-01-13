@@ -29,12 +29,11 @@ public class DemoView extends VerticalLayout {
     public DemoView() {
         setMargin(false);
 
-        Card card = new Card();
-        card.setWidth("300px");
-        card.add(
-                new Title("My very long test title -------------------------").withWhiteSpaceNoWrap(),
+        Card card = new Card(
+                new Title("My very long test title -------------------------").withWhiteSpaceNoWrap(), // if you don't want the title to wrap you can set the whitespace = nowrap
                 new IconItem(getIcon(), "My very long test title -------------------------", "not So long description").withWhiteSpaceNoWrap(),
                 new Item("My very long test title -------------------------", "not So long description").withWhiteSpaceNoWrap(),
+                new Image("/frontend/bg.png", "bg.png"),
                 new Item("My very long test title -------------------------").withWhiteSpaceNoWrap(),
                 new Actions(
                         new ActionButton("Action 1", buttonClickEvent -> Notification.show("Action 1 pressed")),
@@ -42,7 +41,7 @@ public class DemoView extends VerticalLayout {
                         new ActionButton("Action 3", buttonClickEvent -> Notification.show("Action 3 pressed"))
                 )
         );
-
+        card.setWidth("300px");
         add(card,
                 //getCard(false),
                 getCard(true),
