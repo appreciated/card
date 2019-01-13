@@ -7,7 +7,6 @@ public class HorizontalCardComponentContainer extends HorizontalLayout {
     public HorizontalCardComponentContainer() {
         setPadding(true);
         setWidth("100%");
-
     }
 
     public HorizontalCardComponentContainer(Component... children) {

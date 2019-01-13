@@ -7,7 +7,9 @@ import com.github.appreciated.card.action.ActionButton;
 import com.github.appreciated.card.action.Actions;
 import com.github.appreciated.card.content.IconItem;
 import com.github.appreciated.card.content.Item;
-import com.github.appreciated.card.content.Title;
+import com.github.appreciated.card.label.PrimaryLabel;
+import com.github.appreciated.card.label.SecondaryLabel;
+import com.github.appreciated.card.label.TitleLabel;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
@@ -31,27 +33,29 @@ public class DemoView extends VerticalLayout {
 
         RippleClickableCard rcard = new RippleClickableCard(
                 onClick -> {/* Handle Card click */},
-                new Title("Example Title") // Follow up with more Components ...
+                new TitleLabel("Example Title") // Follow up with more Components ...
         );
         ClickableCard ccard = new ClickableCard(
                 onClick -> {/* Handle Card click */},
-                new Title("Example Title") // Follow up with more Components ...
+                new TitleLabel("Example Title") // Follow up with more Components ...
         );
 
         Card card = new Card(
                 // if you don't want the title to wrap you can set the whitespace = nowrap
-                new Title("Example Title").withWhiteSpaceNoWrap(),
-                new IconItem(getIcon(), "Example Title", "not So long description"),
-                new Item("Example Title", "not So long description"),
+                new TitleLabel("Example Title").withWhiteSpaceNoWrap(),
+                new PrimaryLabel("Some primary text"),
+                new SecondaryLabel("Some secondary text"),
+                new IconItem(getIcon(), "Icon Item title", "Icon Item description"),
+                new Item("Item title", "Item description"),
                 new Image("/frontend/bg.png", "bg.png"),
-                new Item("Example Title").withWhiteSpaceNoWrap(),
                 new Actions(
                         new ActionButton("Action 1", event -> {/* Handle Action*/}),
                         new ActionButton("Action 2", event -> {/* Handle Action*/})
                 )
         );
         card.setWidth("300px");
-        add(card,
+        add(
+                card,
                 //getCard(false),
                 getCard(true),
                 getCard(true),
@@ -80,7 +84,7 @@ public class DemoView extends VerticalLayout {
 
     private Card getCard(boolean hasAction) {
         Card card =
-                hasAction ? new Card(new Title("Test Title"),
+                hasAction ? new Card(new TitleLabel("Test Title"),
                         new Image("/frontend/bg.png", "bg.png"), getCardUnselectableContent(), getActions()) :
                         new Card(getCardUnselectableContent());
         card.setWidth("300px");
@@ -129,7 +133,7 @@ public class DemoView extends VerticalLayout {
     }
 
     private Component[] getClickableImageCardContent() {
-        return new Component[]{new Image("/frontend/bg.png", "bg.png"), new Item("Clickable Image Card")};
+        return new Component[]{new Image("/frontend/bg.png", "bg.png"), new PrimaryLabel("Clickable Image Card")};
     }
 
     private Component[] getClickableImageCardActionContent() {

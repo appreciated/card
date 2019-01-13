@@ -2,18 +2,10 @@ package com.github.appreciated.card.content;
 
 import com.github.appreciated.card.label.PrimaryLabelComponent;
 import com.github.appreciated.card.label.SecondaryLabelComponent;
-import com.vaadin.flow.component.Component;
-
-import java.util.Objects;
 
 public class ItemBody extends VerticalCardComponentContainer {
-    private PrimaryLabelComponent primaryLabel;
-    private SecondaryLabelComponent secondaryLabel;
-
-    public ItemBody(Component first, Component second) {
-        add(first, second);
-        setTheme();
-    }
+    private final PrimaryLabelComponent primaryLabel;
+    private final SecondaryLabelComponent secondaryLabel;
 
     public ItemBody(String title, String description) {
         primaryLabel = new PrimaryLabelComponent(title);
@@ -23,7 +15,6 @@ public class ItemBody extends VerticalCardComponentContainer {
     }
 
     public ItemBody withWhiteSpaceNoWrap() {
-        Objects.requireNonNull(primaryLabel);
         primaryLabel.setWhiteSpaceNoWrap();
         return this;
     }
