@@ -44,29 +44,44 @@ public class RippleClickableCard extends ClickableCard implements ClickNotifier 
         add(ripple);
     }
 
+    /**
+     * Convenience fluent method to return {@link RippleClickableCard} instead of {@link ClickableCard}
+     *
+     * @param elevation
+     * @return
+     */
     public RippleClickableCard withElevation(int elevation) {
         super.setElevation(elevation);
         return this;
     }
 
+
+    /**
+     * Sets the elevation of this card. Value can only be in range from 0-4 (--lumo-box-shadow-s) -> --lumo-box-shadow-l))
+     * 4 because there need to be some space for elevation.
+     *
+     * @param elevation
+     */
+    public void setElevation(int elevation) {
+        if (elevation < 6 && elevation >= 0)
+            setElevation(elevation);
+    }
+
+    /**
+     * Convenience fluent method to return {@link RippleClickableCard} instead of {@link ClickableCard}
+     *
+     * @param enabled see {@link ClickableCard#setElevationOnActionEnabled(boolean)}
+     * @return
+     */
     public RippleClickableCard withElevationOnActionEnabled(boolean enabled) {
         setElevationOnActionEnabled(enabled);
         return this;
     }
 
-    public RippleClickableCard withRippleEnabled(boolean enable) {
-        setRippleEnabled(enable);
-        return this;
-    }
-
-    public void setRippleEnabled(boolean enable) {
-        if (enable) {
-            ripple.getElement().getStyle().remove("pointer-events");
-        } else {
-            ripple.getElement().getStyle().set("pointer-events", "none");
-        }
-    }
-
+    /**
+     * Allows to access the {@link PaperRipple} that is used by this {@link Component} for configurability
+     * @return the {@link PaperRipple} instance
+     */
     public PaperRipple getRipple() {
         return ripple;
     }

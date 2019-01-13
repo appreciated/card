@@ -61,6 +61,11 @@ public class ClickableCard extends AbstractCard<ClickableCard> implements ClickN
         checkPreventComponentEventPropagation(Arrays.stream(components));
     }
 
+    /**
+     * Checks whether if one of the passed {@link Component} or it's children contains belongs to a class is listed in {@link ClickableCard#getIgnoredComponentClasses()}
+     *
+     * @param components the components that should be checked
+     */
     private void checkPreventComponentEventPropagation(Stream<Component> components) {
         components.forEach(component -> {
             if (ignoredClasses.contains(component.getClass())) {
@@ -73,28 +78,38 @@ public class ClickableCard extends AbstractCard<ClickableCard> implements ClickN
     }
 
     /**
-     * Some JavaScripts events of a contained {@link Component} inside the {@link RippleClickableCard} need to be ignored.
-     * To make this happen every single Child {@link Component} will need to be prevented to sent the relevant events to the {@link RippleClickableCard}
+     * Some JavaScripts events of a contained {@link Component} inside the {@link ClickableCard} need to be ignored.
+     * To make this happen every single Child {@link Component} will need to be prevented to sent the relevant events to the {@link ClickableCard}
      *
-     * @return
+     * @return list of {@link Component} Classes that should not pass it's down / click event to the parent.
      */
     public List<Class> getIgnoredComponentClasses() {
         return Arrays.asList(Button.class, ActionButton.class);
     }
 
     /**
-     * Prevent the Component to sent its
+     * Prevents a Component to sent its events to this {@link Component} by sending a method to the client-sided couterpart
      */
     private void preventElementEventPropagation(Component component) {
         getElement().callFunction("preventElementEventPropagation", component.getElement());
     }
 
-
+    /**
+     * fluent method for {@link ClickableCard#setElevationOnActionEnabled(boolean)}
+     *
+     * @param enabled see {@link ClickableCard#setElevationOnActionEnabled(boolean)}
+     * @return This element to allow using the method fluently
+     */
     public ClickableCard withElevationOnActionEnabled(boolean enabled) {
         setElevationOnActionEnabled(enabled);
         return this;
     }
 
+    /**
+     * Allows to disable the behaviour of elevation change on "hover"(Desktop) / "active"(Mobile).
+     *
+     * @param enable whether the elevation change should be enabled or not
+     */
     public void setElevationOnActionEnabled(boolean enable) {
         getElement().setProperty("elevationEnabled", enable);
     }
