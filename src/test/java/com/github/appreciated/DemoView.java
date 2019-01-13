@@ -139,7 +139,7 @@ public class DemoView extends VerticalLayout {
 
     private Component[] getClickableImageCardActionContent() {
         IronCollapse collapse = new IronCollapse(new VerticalLayout(getExampleContent(), getExampleContent(), getExampleContent()));
-        collapse.getElement().getStyle().set("width", "100%");
+        collapse.setWidth("100%");
         return new Component[]{new Image("/frontend/bg.png", "bg.png"), collapse, new Actions(new ActionButton("Expand", buttonClickEvent -> collapse.toggle()))};
     }
 
