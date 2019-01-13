@@ -29,16 +29,25 @@ public class DemoView extends VerticalLayout {
     public DemoView() {
         setMargin(false);
 
+        RippleClickableCard rcard = new RippleClickableCard(
+                onClick -> {/* Handle Card click */},
+                new Title("Example Title") // Follow up with more Components ...
+        );
+        ClickableCard ccard = new ClickableCard(
+                onClick -> {/* Handle Card click */},
+                new Title("Example Title") // Follow up with more Components ...
+        );
+
         Card card = new Card(
-                new Title("My very long test title -------------------------").withWhiteSpaceNoWrap(), // if you don't want the title to wrap you can set the whitespace = nowrap
-                new IconItem(getIcon(), "My very long test title -------------------------", "not So long description").withWhiteSpaceNoWrap(),
-                new Item("My very long test title -------------------------", "not So long description").withWhiteSpaceNoWrap(),
+                // if you don't want the title to wrap you can set the whitespace = nowrap
+                new Title("Example Title").withWhiteSpaceNoWrap(),
+                new IconItem(getIcon(), "Example Title", "not So long description"),
+                new Item("Example Title", "not So long description"),
                 new Image("/frontend/bg.png", "bg.png"),
-                new Item("My very long test title -------------------------").withWhiteSpaceNoWrap(),
+                new Item("Example Title").withWhiteSpaceNoWrap(),
                 new Actions(
-                        new ActionButton("Action 1", buttonClickEvent -> Notification.show("Action 1 pressed")),
-                        new ActionButton("Action 2", buttonClickEvent -> Notification.show("Action 2 pressed")),
-                        new ActionButton("Action 3", buttonClickEvent -> Notification.show("Action 3 pressed"))
+                        new ActionButton("Action 1", event -> {/* Handle Action*/}),
+                        new ActionButton("Action 2", event -> {/* Handle Action*/})
                 )
         );
         card.setWidth("300px");
@@ -125,6 +134,7 @@ public class DemoView extends VerticalLayout {
 
     private Component[] getClickableImageCardActionContent() {
         IronCollapse collapse = new IronCollapse(new VerticalLayout(getExampleContent(), getExampleContent(), getExampleContent()));
+        collapse.getElement().getStyle().set("width", "100%");
         return new Component[]{new Image("/frontend/bg.png", "bg.png"), collapse, new Actions(new ActionButton("Expand", buttonClickEvent -> collapse.toggle()))};
     }
 
