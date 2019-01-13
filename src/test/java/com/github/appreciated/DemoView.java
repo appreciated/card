@@ -78,6 +78,7 @@ public class DemoView extends VerticalLayout {
         ClickableCard card = hasAction ? new ClickableCard(event -> Notification.show("Clicked!"), getCardSelectableContent(), getActions()) : new ClickableCard(event -> Notification.show("Clicked!"), getCardSelectableContent());
         card.setWidth("300px");
         card.setElevation(currentElevation1++);
+        card.setElevationOnActionEnabled(false);
         return card;
     }
 

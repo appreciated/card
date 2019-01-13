@@ -10,6 +10,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * Similar to {@link Card} but you can add a click listener to it.
+ * The convenience feature this component offers is that you can add a {@link Component} to it which has their own click
+ * listener. The click events of this {@link Component} will not be passed to the click listener of the {@link ClickableCard}
+ * <p>
+ * The {@link Component} classes that are by default supported are {@link com.github.appreciated.card.action.ActionButton}
+ * and {@link com.vaadin.flow.component.button.Button}. To add another {@link Component} extend this class, overwrite the
+ * {@link ClickableCard#getIgnoredComponentClasses()} and append your {@link Component} to it.
+ */
 @Tag("clickable-card")
 @HtmlImport("frontend://com/github/appreciated/card/clickable-card.html")
 public class ClickableCard extends AbstractCard<ClickableCard> implements ClickNotifier {
@@ -83,6 +92,6 @@ public class ClickableCard extends AbstractCard<ClickableCard> implements ClickN
     }
 
     public void setElevationOnActionEnabled(boolean enable) {
-        getElement().setProperty("enableElevate", enable);
+        getElement().setProperty("elevationEnabled", enable);
     }
 }

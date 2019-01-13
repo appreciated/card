@@ -7,6 +7,17 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 
+/**
+ * Similar to {@link ClickableCard} but it has a {@link PaperRipple}.
+ * The additional convenience feature this component is that you can add a {@link Component} to it which has their own click
+ * listener. The down events of this {@link Component} will not be passed to the down listener of the {@link PaperRipple}
+ * so the {@link PaperRipple} effect will only be visible if you click on an non clickable element.
+ * <p>
+ * The {@link Component} classes that are by default supported are {@link com.github.appreciated.card.action.ActionButton}
+ * and {@link com.vaadin.flow.component.button.Button}. To add another {@link Component} extend this class, overwrite the
+ * {@link RippleClickableCard#getIgnoredComponentClasses()} and append your {@link Component} to it.
+ */
+
 @Tag("clickable-card")
 @HtmlImport("frontend://com/github/appreciated/card/clickable-card.html")
 public class RippleClickableCard extends ClickableCard implements ClickNotifier {

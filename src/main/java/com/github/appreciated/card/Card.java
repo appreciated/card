@@ -5,7 +5,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 
 /**
- * A component very similar to the paper-card Webcomponent
+ * A component very similar to the @{<paper-card> } Webcomponent
  */
 @Tag("content-card")
 @HtmlImport("frontend://com/github/appreciated/card/content-card.html")
