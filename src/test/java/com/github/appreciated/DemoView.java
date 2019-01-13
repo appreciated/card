@@ -28,7 +28,22 @@ public class DemoView extends VerticalLayout {
 
     public DemoView() {
         setMargin(false);
-        add(
+
+        Card card = new Card();
+        card.setWidth("300px");
+        card.add(
+                new Title("My very long test title -------------------------").withWhiteSpaceNoWrap(),
+                new IconItem(getIcon(), "My very long test title -------------------------", "not So long description").withWhiteSpaceNoWrap(),
+                new Item("My very long test title -------------------------", "not So long description").withWhiteSpaceNoWrap(),
+                new Item("My very long test title -------------------------").withWhiteSpaceNoWrap(),
+                new Actions(
+                        new ActionButton("Action 1", buttonClickEvent -> Notification.show("Action 1 pressed")),
+                        new ActionButton("Action 2", buttonClickEvent -> Notification.show("Action 2 pressed")),
+                        new ActionButton("Action 3", buttonClickEvent -> Notification.show("Action 3 pressed"))
+                )
+        );
+
+        add(card,
                 //getCard(false),
                 getCard(true),
                 getCard(true),
@@ -98,7 +113,7 @@ public class DemoView extends VerticalLayout {
     }
 
     private Component getCardUnselectableContent() {
-        return new IconItem(getIcon(), "Normal Card", "I can normal card. I show content and provide some actions below");
+        return new IconItem(getIcon(), "Normal CardsdfgsdfgjkÖASJDKLÖjasklödjklASJDKLJKLASDF", "I can normal card. I show content and provide some actions below");
     }
 
     private Component getCardSelectableContent() {

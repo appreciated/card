@@ -1,15 +1,14 @@
 package com.github.appreciated.card.content;
 
-import com.github.appreciated.card.label.PrimaryLabel;
+import com.github.appreciated.card.label.PrimaryLabelComponent;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 
-public class Item extends HorizontalLayout {
+public class Item extends HorizontalCardComponentContainer {
+
+    private Component component;
 
     public Item() {
-        setMargin(false);
-        setPadding(false);
     }
 
     public Item(Component... component) {
@@ -18,11 +17,25 @@ public class Item extends HorizontalLayout {
     }
 
     public Item(String text) {
-        this(new PrimaryLabel(text));
+        this();
+        component = new PrimaryLabelComponent(text);
+        add(component);
     }
 
     public Item(String title, String description) {
-        this(new ItemBody(title, description));
+        this();
+        component = new ItemBody(title, description);
+        ((ItemBody) component).setPadding(false);
+        add(component);
+    }
+
+    public Item withWhiteSpaceNoWrap() {
+        if (component instanceof PrimaryLabelComponent) {
+            ((PrimaryLabelComponent) component).setWhiteSpaceNoWrap();
+        } else if (component instanceof ItemBody) {
+            ((ItemBody) component).withWhiteSpaceNoWrap();
+        }
+        return this;
     }
 
 }

@@ -12,7 +12,7 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 public class Card extends AbstractCard<Card> {
 
     public Card() {
-        this(null, null);
+        this(null);
     }
 
     public Card(Component... components) {

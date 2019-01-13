@@ -1,18 +1,18 @@
 package com.github.appreciated.card.content;
 
-import com.vaadin.flow.component.html.Label;
+import com.github.appreciated.card.label.TitleLabelComponent;
 
-public class Title extends Label {
-    public Title() {
-        init();
-    }
+public class Title extends HorizontalCardComponentContainer {
+    private final TitleLabelComponent label;
 
     public Title(String text) {
-        super(text);
-        init();
+        label = new TitleLabelComponent(text);
+        add(label);
+        setWidth("100%");
     }
 
-    private void init() {
-        getStyle().set("font-size", "var(--lumo-font-size-xl)");
+    public Title withWhiteSpaceNoWrap() {
+        label.setWhiteSpaceNoWrap();
+        return this;
     }
 }

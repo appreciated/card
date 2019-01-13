@@ -29,8 +29,11 @@ public abstract class AbstractCard<T extends AbstractCard> extends PolymerTempla
         contentHolder = new VerticalLayout();
         contentHolder.setPadding(false);
         contentHolder.setMargin(false);
+        contentHolder.setSpacing(false);
         contentDiv.appendChild(contentHolder.getElement());
-        add(components);
+        if (components != null) {
+            add(components);
+        }
     }
 
     /**
@@ -42,6 +45,7 @@ public abstract class AbstractCard<T extends AbstractCard> extends PolymerTempla
 
     /**
      * Sets the elevation of this card. Value must be be in range from 0-5 (--lumo-box-shadow-s) -> --lumo-box-shadow-xl))
+     *
      * @param elevation
      */
     public void setElevation(int elevation) {

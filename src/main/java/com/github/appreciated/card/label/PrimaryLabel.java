@@ -1,18 +1,14 @@
 package com.github.appreciated.card.label;
 
-import com.vaadin.flow.component.html.Label;
+import com.github.appreciated.card.content.HorizontalCardComponentContainer;
+import com.vaadin.flow.component.Component;
 
-public class PrimaryLabel extends Label {
-    public PrimaryLabel() {
-        getStyle()
-                .set("font-size", "var(--lumo-font-size-l)")
-                .set("font-weight", "500");
+public class PrimaryLabel extends HorizontalCardComponentContainer implements WhiteSpaceLabel {
+    public PrimaryLabel(Component component) {
+        super(component);
     }
 
     public PrimaryLabel(String text) {
-        super(text);
-        getStyle()
-                .set("font-size", "var(--lumo-font-size-l)")
-                .set("font-weight", "500");
+        super(new PrimaryLabel(text));
     }
 }
