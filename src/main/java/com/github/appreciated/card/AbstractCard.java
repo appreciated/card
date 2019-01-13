@@ -40,17 +40,17 @@ public abstract class AbstractCard<T extends AbstractCard> extends PolymerTempla
         return Integer.parseInt(getElement().getAttribute("elevation"));
     }
 
-    public T withElevation(int elevation) {
-        setElevation(elevation);
-        return (T) this;
-    }
-
     /**
      * @param elevation
      */
     public void setElevation(int elevation) {
         if (elevation < 5 && elevation >= 0)
             content.getElement().setAttribute("elevation", String.valueOf(elevation));
+    }
+
+    public T withElevation(int elevation) {
+        setElevation(elevation);
+        return (T) this;
     }
 
     @Override
