@@ -70,8 +70,7 @@ public class ClickableCard extends AbstractCard<ClickableCard> implements ClickN
         components.forEach(component -> {
             if (ignoredClasses.contains(component.getClass())) {
                 preventElementEventPropagation(component);
-            } else if (component instanceof HasOrderedComponents &&
-                    ((HasOrderedComponents) component).getComponentCount() > 0) {
+            } else if (getChildren().count() > 0) {
                 checkPreventComponentEventPropagation(component.getChildren());
             }
         });
