@@ -35,6 +35,7 @@ public class DemoView extends VerticalLayout {
                 onClick -> {/* Handle Card click */},
                 new TitleLabel("Example Title") // Follow up with more Components ...
         );
+
         ClickableCard ccard = new ClickableCard(
                 onClick -> {/* Handle Card click */},
                 new TitleLabel("Example Title") // Follow up with more Components ...
