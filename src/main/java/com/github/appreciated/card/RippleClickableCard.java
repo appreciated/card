@@ -64,7 +64,7 @@ public class RippleClickableCard extends ClickableCard implements ClickNotifier 
      */
     public void setElevation(int elevation) {
         if (elevation < 6 && elevation >= 0)
-            setElevation(elevation);
+            super.setElevation(elevation);
     }
 
     /**
