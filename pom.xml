@@ -5,7 +5,7 @@
 
     <groupId>com.github.appreciated</groupId>
     <artifactId>card</artifactId>
-    <version>0.5.1</version>
+    <version>0.6</version>
     <name>Card</name>
     <description>Cards for Vaadin 10</description>
 
