@@ -2,7 +2,7 @@
     <template>
         <style>
             #card-content {
-                transition: box-shadow 0.35s ease;
+                transition: box-shadow 0.35s ease, background-color 0.35s ease;
                 box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0);
                 border-radius: var(--lumo-border-radius);
                 overflow: hidden;
@@ -32,6 +32,10 @@
                 box-shadow: var(--lumo-box-shadow-s);
             }
 
+            #card-content.no-touch:hover {
+                background-color: var(--lumo-contrast-5pct);
+            }
+
             #card-content[elevation="1"]:not(.no-elevate).no-touch:hover {
                 box-shadow: var(--lumo-box-shadow-m);
             }
@@ -46,6 +50,10 @@
 
             #card-content:not(.no-elevate).touch:not(.no-elevate):active {
                 box-shadow: var(--lumo-box-shadow-s);
+            }
+
+            #card-content.touch:not(.no-elevate):active {
+                background-color: var(--lumo-contrast-5pct);
             }
 
             #card-content[elevation="1"]:not(.no-elevate).touch:active {
@@ -82,10 +90,10 @@
                 } else {
                     Polymer.dom(this.root).querySelector("#card-content").classList.add('no-touch');
                 }
-                if (this.elevationEnabled === false) {
-                    Polymer.dom(this.root).querySelector("#card-content").classList.add('no-elevate');
-                } else {
+                if (this.elevationEnabled === true) {
                     Polymer.dom(this.root).querySelector("#card-content").classList.remove('no-elevate');
+                } else {
+                    Polymer.dom(this.root).querySelector("#card-content").classList.add('no-elevate');
                 }
             }
 
