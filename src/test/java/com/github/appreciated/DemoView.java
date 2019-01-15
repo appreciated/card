@@ -10,6 +10,7 @@ import com.github.appreciated.card.content.Item;
 import com.github.appreciated.card.label.PrimaryLabel;
 import com.github.appreciated.card.label.SecondaryLabel;
 import com.github.appreciated.card.label.TitleLabel;
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
@@ -29,6 +30,7 @@ public class DemoView extends VerticalLayout {
     int currentElevation3 = 0;
 
     public DemoView() {
+
         setMargin(false);
 
         RippleClickableCard rcard = new RippleClickableCard(
@@ -75,6 +77,13 @@ public class DemoView extends VerticalLayout {
 //                new IconItem(getIcon(), "Test text"),
 //                new IconItem(getIcon(), "Test Title", "Test Description")
         );
+    }
+
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        super.onAttach(attachEvent);
+
+        getUI().get().getPage().executeJavaScript("document.documentElement.setAttribute(\"theme\",\"dark\")");
     }
 
     private Component getClickableNoElevationOnClickImageCard(boolean b) {
