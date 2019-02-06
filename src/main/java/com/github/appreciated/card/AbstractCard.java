@@ -68,4 +68,7 @@ public abstract class AbstractCard<T extends AbstractCard> extends PolymerTempla
         return contentHolder;
     }
 
+    public Element getTemplateDiv() {
+        return contentDiv;
+    }
 }
