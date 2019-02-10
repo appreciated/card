@@ -26,14 +26,22 @@ public abstract class AbstractCard<T extends AbstractCard> extends PolymerTempla
         setElevation(1);
         contentDiv = ElementFactory.createDiv();
         getElement().appendChild(contentDiv);
+        contentDiv.getStyle().set("width", "100%");
+        contentDiv.getStyle().set("height", "100%");
         contentHolder = new VerticalLayout();
         contentHolder.setPadding(false);
         contentHolder.setMargin(false);
         contentHolder.setSpacing(false);
+        contentHolder.setSizeFull();
         contentDiv.appendChild(contentHolder.getElement());
         if (components != null) {
             add(components);
         }
+    }
+
+    @Override
+    public void add(Component... components) {
+        contentHolder.add(components);
     }
 
     /**
@@ -57,12 +65,6 @@ public abstract class AbstractCard<T extends AbstractCard> extends PolymerTempla
         setElevation(elevation);
         return (T) this;
     }
-
-    @Override
-    public void add(Component... components) {
-        contentHolder.add(components);
-    }
-
 
     public VerticalLayout getContent() {
         return contentHolder;

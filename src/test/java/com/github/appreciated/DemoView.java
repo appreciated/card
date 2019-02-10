@@ -11,6 +11,7 @@ import com.github.appreciated.card.label.PrimaryLabel;
 import com.github.appreciated.card.label.SecondaryLabel;
 import com.github.appreciated.card.label.TitleLabel;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -55,8 +56,17 @@ public class DemoView extends VerticalLayout {
                         new ActionButton("Action 2", event -> {/* Handle Action*/})
                 )
         );
+        ClickableCard c = new ClickableCard();
+        Div div = new Div();
+        div.getStyle().set("background", "red");
+        div.setSizeFull();
+        c.add(div);
+        c.setWidth("500px");
+        c.setHeight("500px");
+
         card.setWidth("300px");
         add(
+                c,
                 card,
                 //getCard(false),
                 getCard(true),
