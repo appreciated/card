@@ -3,11 +3,13 @@ package com.github.appreciated.card;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.Arrays;
+import java.util.function.Consumer;
 
-public class StatefulCardGroup extends VerticalLayout {
+public class StatefulCardGroup<T extends StatefulCard> extends VerticalLayout {
     StatefulCard currentFocus;
+    private Consumer<T> listener;
 
-    public StatefulCardGroup(StatefulCard... children) {
+    public StatefulCardGroup(T... children) {
         super(children);
         Arrays.stream(children).forEach(card -> card.addClickListener(event -> setFocus(card)));
         setMargin(false);
@@ -15,12 +17,25 @@ public class StatefulCardGroup extends VerticalLayout {
         setSpacing(false);
     }
 
-    private void setFocus(StatefulCard nextFocus) {
-        nextFocus.setFocus(true);
-        if (currentFocus != null) {
-            currentFocus.setFocus(false);
+    private void setFocus(T nextFocus) {
+        if (nextFocus != currentFocus) {
+            nextFocus.setFocus(true);
+            if (currentFocus != null) {
+                currentFocus.setFocus(false);
+            }
+            currentFocus = nextFocus;
+            if (listener != null) {
+                listener.accept(nextFocus);
+            }
         }
-        currentFocus = nextFocus;
     }
 
+    public StatefulCardGroup<T> withStateChangedListener(Consumer<T> listener) {
+        setStateChangedListener(listener);
+        return this;
+    }
+
+    public void setStateChangedListener(Consumer<T> listener) {
+        this.listener = listener;
+    }
 }

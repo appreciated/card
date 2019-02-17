@@ -53,19 +53,18 @@ public class DemoView extends VerticalLayout {
 
         StatefulCard scard = new StatefulCard(
                 new IconItem(getIcon(), "Icon Item title", "Icon Item description")
-        );
+        ).withWidth("300px");
         scard.addClickListener(event -> scard.setFocus(true));
 
-        StatefulCardGroup group = new StatefulCardGroup(
-                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
-                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
-                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
-                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
-                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
-                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
-                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
-                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px")
-        );
+        StatefulCardGroup<MyStatefulCard> group = new StatefulCardGroup<>(
+                new MyStatefulCard(1),
+                new MyStatefulCard(2),
+                new MyStatefulCard(3),
+                new MyStatefulCard(4),
+                new MyStatefulCard(5),
+                new MyStatefulCard(6),
+                new MyStatefulCard(7)
+        ).withStateChangedListener(statefulCard -> Notification.show("MyStatefulCard " + statefulCard.getI() + " selected!"));
 
         add(
                 c,
@@ -162,4 +161,21 @@ public class DemoView extends VerticalLayout {
         return new IconItem(getIcon(), "Example", "I got expanded with Iron-Collapse!");
     }
 
+    class MyStatefulCard extends StatefulCard {
+        private int i;
+
+        public MyStatefulCard(int i) {
+            this.i = i;
+            add(new IconItem(getIcon(), "Icon Item " + i, "Icon Item description sjskdfgjksdfjglöksdfg")
+                    .withWhiteSpaceNoWrap()
+                    .withPadding("5px"));
+            withElevation(0)
+                    .withWidth("300px")
+                    .withBorderRadius("0px");
+        }
+
+        public int getI() {
+            return i;
+        }
+    }
 }
