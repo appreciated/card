@@ -4,8 +4,6 @@ import com.github.appreciated.ripple.PaperRipple;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
-import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 
 /**
  * Similar to {@link ClickableCard} but it has a {@link PaperRipple}.
@@ -22,8 +20,6 @@ import com.vaadin.flow.component.dependency.HtmlImport;
  * {@link RippleClickableCard#getIgnoredComponentClasses()} and append your {@link Component} to it.
  */
 
-@Tag("clickable-card")
-@HtmlImport("frontend://com/github/appreciated/card/clickable-card.html")
 public class RippleClickableCard extends ClickableCard implements ClickNotifier {
 
     private final PaperRipple ripple;

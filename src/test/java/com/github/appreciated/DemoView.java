@@ -1,8 +1,6 @@
 package com.github.appreciated;
 
-import com.github.appreciated.card.Card;
-import com.github.appreciated.card.ClickableCard;
-import com.github.appreciated.card.RippleClickableCard;
+import com.github.appreciated.card.*;
 import com.github.appreciated.card.action.ActionButton;
 import com.github.appreciated.card.action.Actions;
 import com.github.appreciated.card.content.IconItem;
@@ -33,15 +31,11 @@ public class DemoView extends VerticalLayout {
 
         setMargin(false);
 
-        RippleClickableCard rcard = new RippleClickableCard(
-                onClick -> {/* Handle Card click */},
-                new TitleLabel("Example Title") // Follow up with more Components ...
-        );
-
-        ClickableCard ccard = new ClickableCard(
-                onClick -> {/* Handle Card click */},
-                new TitleLabel("Example Title") // Follow up with more Components ...
-        );
+        ClickableCard c = new ClickableCard().withWidth("500px").withHeight("500px");
+        Div div = new Div();
+        div.getStyle().set("background", "red");
+        div.setSizeFull();
+        c.add(div);
 
         Card card = new Card(
                 // if you don't want the title to wrap you can set the whitespace = nowrap
@@ -55,16 +49,24 @@ public class DemoView extends VerticalLayout {
                         new ActionButton("Action 1", event -> {/* Handle Action*/}),
                         new ActionButton("Action 2", event -> {/* Handle Action*/})
                 )
-        );
-        ClickableCard c = new ClickableCard();
-        Div div = new Div();
-        div.getStyle().set("background", "red");
-        div.setSizeFull();
-        c.add(div);
-        c.setWidth("500px");
-        c.setHeight("500px");
+        ).withWidth("300px");
 
-        card.setWidth("300px");
+        StatefulCard scard = new StatefulCard(
+                new IconItem(getIcon(), "Icon Item title", "Icon Item description")
+        );
+        scard.addClickListener(event -> scard.setFocus(true));
+
+        StatefulCardGroup group = new StatefulCardGroup(
+                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
+                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
+                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
+                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
+                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
+                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
+                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px"),
+                new StatefulCard(new IconItem(getIcon(), "Icon Item title sdfjgklsödjfkgljskldfögj", "Icon Item description sjskdfgjksdfjglöksdfg").withWhiteSpaceNoWrap().withPadding("5px")).withElevation(0).withWidth("300px").withBorderRadius("0px")
+        );
+
         add(
                 c,
                 card,
@@ -80,11 +82,13 @@ public class DemoView extends VerticalLayout {
                 getClickableImageCard(true),
                 getClickableNoElevationOnClickImageCard(false),
                 getClickableNoElevationOnClickImageCard(true),
-                getClickableNoElevationOnClickImageCard(true)
+                getClickableNoElevationOnClickImageCard(true),
 //                new Item("Test text"),
 //                new Item("Test title", "Test description"),
 //                new IconItem(getIcon(), "Test text"),
 //                new IconItem(getIcon(), "Test Title", "Test Description")
+                scard,
+                group
         );
     }
 

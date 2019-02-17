@@ -4,7 +4,7 @@ import com.github.appreciated.card.label.PrimaryLabelComponent;
 import com.vaadin.flow.component.Component;
 
 
-public class Item extends HorizontalCardComponentContainer {
+public class Item extends HorizontalCardComponentContainer<Item> {
 
     private Component component;
 

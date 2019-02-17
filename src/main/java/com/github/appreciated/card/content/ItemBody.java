@@ -16,6 +16,7 @@ public class ItemBody extends VerticalCardComponentContainer {
 
     public ItemBody withWhiteSpaceNoWrap() {
         primaryLabel.setWhiteSpaceNoWrap();
+        secondaryLabel.setWhiteSpaceNoWrap();
         return this;
     }
 
@@ -23,4 +24,11 @@ public class ItemBody extends VerticalCardComponentContainer {
         getElement().setAttribute("theme", "spacing-xs");
     }
 
+    public PrimaryLabelComponent getPrimaryLabel() {
+        return primaryLabel;
+    }
+
+    public SecondaryLabelComponent getSecondaryLabel() {
+        return secondaryLabel;
+    }
 }

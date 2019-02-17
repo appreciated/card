@@ -8,7 +8,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.orderedlayout.ThemableLayout;
 
-public class IconItem extends HorizontalCardComponentContainer {
+public class IconItem extends HorizontalCardComponentContainer<IconItem> {
     private Component component;
 
     public IconItem(Component icon, Component component) {

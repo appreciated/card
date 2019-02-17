@@ -13,31 +13,31 @@ import java.util.stream.Stream;
 /**
  * Similar to {@link Card} but you can add a click listener to it.
  * The convenience feature this component offers is that you can add a {@link Component} to it which has their own click
- * listener. The click events of this {@link Component} will not be passed to the click listener of the {@link ClickableCard}
+ * listener. The click events of this {@link Component} will not be passed to the click listener of the {@link StatefulCard}
  * <p>
- * The {@link ClickableCard} also increases it's "elevation" by one (f.e. var(--lumo-box-shadow-s) -> var(--lumo-box-shadow-m))
+ * The {@link StatefulCard} also increases it's "elevation" by one (f.e. var(--lumo-box-shadow-s) -> var(--lumo-box-shadow-m))
  * to make it clear to the user that it can be clicked. This element behaves in this aspect different on devices that have
- * "ontouchstart" defined than on devices that don't. The elevation raise on "hover" / "active" can be disabled {@link ClickableCard#setElevationOnActionEnabled(boolean)}
+ * "ontouchstart" defined than on devices that don't. The elevation raise on "hover" / "active" can be disabled {@link StatefulCard#setElevationOnActionEnabled(boolean)}
  * <p>
- * The {@link Component} classes that are by default supported are {@link com.github.appreciated.card.action.ActionButton}
- * and {@link com.vaadin.flow.component.button.Button}. To add another {@link Component} extend this class, overwrite the
- * {@link ClickableCard#getIgnoredComponentClasses()} and append your {@link Component} to it.
+ * The {@link Component} classes that are by default supported are {@link ActionButton}
+ * and {@link Button}. To add another {@link Component} extend this class, overwrite the
+ * {@link StatefulCard#getIgnoredComponentClasses()} and append your {@link Component} to it.
  */
-@Tag("clickable-card")
-@HtmlImport("frontend://com/github/appreciated/card/clickable-card.html")
-public class ClickableCard extends AbstractCard<ClickableCard> implements ClickNotifier {
+@Tag("stateful-card")
+@HtmlImport("frontend://com/github/appreciated/card/stateful-card.html")
+public class StatefulCard extends AbstractCard<StatefulCard> implements ClickNotifier {
 
     private List<Class> ignoredClasses;
 
-    public ClickableCard() {
+    public StatefulCard() {
         this(null);
     }
 
-    public ClickableCard(Component... components) {
+    public StatefulCard(Component... components) {
         this(null, components);
     }
 
-    public ClickableCard(ComponentEventListener listener, Component... components) {
+    public StatefulCard(ComponentEventListener listener, Component... components) {
         super(components);
         if (listener != null) {
             addClickListener(listener);
@@ -52,7 +52,7 @@ public class ClickableCard extends AbstractCard<ClickableCard> implements ClickN
         }
     }
 
-    public ClickableCard withClickListener(ComponentEventListener listener) {
+    public StatefulCard withClickListener(ComponentEventListener listener) {
         addClickListener(listener);
         return this;
     }
@@ -67,7 +67,7 @@ public class ClickableCard extends AbstractCard<ClickableCard> implements ClickN
     }
 
     /**
-     * Checks whether if one of the passed {@link Component} or it's children contains belongs to a class is listed in {@link ClickableCard#getIgnoredComponentClasses()}
+     * Checks whether if one of the passed {@link Component} or it's children contains belongs to a class is listed in {@link StatefulCard#getIgnoredComponentClasses()}
      *
      * @param components the components that should be checked
      */
@@ -82,8 +82,8 @@ public class ClickableCard extends AbstractCard<ClickableCard> implements ClickN
     }
 
     /**
-     * Some JavaScripts events of a contained {@link Component} inside the {@link ClickableCard} need to be ignored.
-     * To make this happen every single Child {@link Component} will need to be prevented to sent the relevant events to the {@link ClickableCard}
+     * Some JavaScripts events of a contained {@link Component} inside the {@link StatefulCard} need to be ignored.
+     * To make this happen every single Child {@link Component} will need to be prevented to sent the relevant events to the {@link StatefulCard}
      *
      * @return list of {@link Component} Classes that should not pass it's down / click event to the parent.
      */
@@ -99,12 +99,12 @@ public class ClickableCard extends AbstractCard<ClickableCard> implements ClickN
     }
 
     /**
-     * fluent method for {@link ClickableCard#setElevationOnActionEnabled(boolean)}
+     * fluent method for {@link StatefulCard#setElevationOnActionEnabled(boolean)}
      *
-     * @param enabled see {@link ClickableCard#setElevationOnActionEnabled(boolean)}
+     * @param enabled see {@link StatefulCard#setElevationOnActionEnabled(boolean)}
      * @return This element to allow using the method fluently
      */
-    public ClickableCard withElevationOnActionEnabled(boolean enabled) {
+    public StatefulCard withElevationOnActionEnabled(boolean enabled) {
         setElevationOnActionEnabled(enabled);
         return this;
     }
@@ -117,4 +117,26 @@ public class ClickableCard extends AbstractCard<ClickableCard> implements ClickN
     public void setElevationOnActionEnabled(boolean enable) {
         getElement().setProperty("elevationEnabled", enable);
     }
+
+    /**
+     * fluent method for {@link StatefulCard#setFocus(boolean)}
+     *
+     * @param focus see {@link StatefulCard#setFocus(boolean)}
+     * @return This element to allow using the method fluently
+     */
+    public StatefulCard withFocus(boolean focus) {
+        setFocus(focus);
+        return this;
+    }
+
+    /**
+     * Allows to disable the behaviour of elevation change on "hover"(Desktop) / "active"(Mobile).
+     *
+     * @param focus whether the card should have focus or not
+     */
+    public void setFocus(boolean focus) {
+        System.out.println("setFocus(" + focus + ")");
+        getElement().callFunction("setFocus", focus);
+    }
+
 }
