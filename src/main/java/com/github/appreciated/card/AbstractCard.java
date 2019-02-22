@@ -63,10 +63,6 @@ public abstract class AbstractCard<T extends AbstractCard> extends PolymerTempla
         return contentHolder;
     }
 
-    public Div getTemplateDiv() {
-        return content;
-    }
-
     public T withBorderRadius(String size) {
         setBorderRadius(size);
         return (T) this;
@@ -74,6 +70,24 @@ public abstract class AbstractCard<T extends AbstractCard> extends PolymerTempla
 
     public void setBorderRadius(String size) {
         getStyle().set("--lumo-border-radius", size);
+    }
+
+    public void setBackground(String background) {
+        getTemplateDiv().getStyle().set("background", background);
+    }
+
+    public Div getTemplateDiv() {
+        return content;
+    }
+
+    public void setTransition(String transition) {
+        getTemplateDiv().getStyle().set("transition", transition);
+    }
+
+    public void setColor(String color) {
+        getStyle()
+                .set("--lumo-header-text-color", color)
+                .set("--lumo-body-text-color", color);
     }
 
     public T withWidth(String width) {
