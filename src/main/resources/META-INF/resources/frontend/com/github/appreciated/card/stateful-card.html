@@ -79,14 +79,6 @@
                 this.elevationEnabled = enable;
             }
 
-            setSelected(selected) {
-                if (selected) {
-                    Polymer.dom(this.root).querySelector("#card-content").classList.add('selected');
-                } else {
-                    Polymer.dom(this.root).querySelector("#card-content").classList.remove('selected');
-                }
-            }
-
             preventElementEventPropagation(element) {
                 element.addEventListener('down', function (ev) {
                     ev.stopPropagation();

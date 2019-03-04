@@ -135,7 +135,7 @@ public class StatefulCard extends AbstractCard<StatefulCard> implements ClickNot
      * @param selected whether the card should have focus or not
      */
     public void setSelected(boolean selected) {
-        getElement().callFunction("setSelected", selected);
+        getTemplateDiv().getClassNames().set("selected", selected);
     }
 
 }
