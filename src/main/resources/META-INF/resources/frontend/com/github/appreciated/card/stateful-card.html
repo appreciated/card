@@ -35,7 +35,11 @@
                 box-shadow: var(--lumo-box-shadow-s);
             }
 
-            #card-content:hover, #card-content.selected {
+            #card-content.selected {
+                background-color: var(--card-state-highlight, var(--lumo-contrast-5pct));
+            }
+
+            #card-content:hover {
                 background-color: var(--lumo-contrast-5pct);
             }
 

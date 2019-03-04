@@ -57,6 +57,14 @@ public class StatefulCardGroup<T extends StatefulCard> extends Composite<Vertica
         this.listener = listener;
     }
 
+    public void setHighlight(boolean enabled) {
+        if (enabled) {
+            getContent().getStyle().remove("--card-state-highlight");
+        } else {
+            getContent().getStyle().set("--card-state-highlight", "transparent");
+        }
+    }
+
     public List<T> getCards() {
         return cards;
     }
