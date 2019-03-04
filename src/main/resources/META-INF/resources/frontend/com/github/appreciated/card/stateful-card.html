@@ -35,19 +35,19 @@
                 box-shadow: var(--lumo-box-shadow-s);
             }
 
-            #card-content:hover, #card-content.focus {
+            #card-content:hover, #card-content.selected {
                 background-color: var(--lumo-contrast-5pct);
             }
 
-            #card-content[elevation="1"]:not(.no-elevate):hover, #card-content[elevation="1"]:not(.no-elevate).focus {
+            #card-content[elevation="1"]:not(.no-elevate):hover, #card-content[elevation="1"]:not(.no-elevate).selected {
                 box-shadow: var(--lumo-box-shadow-m);
             }
 
-            #card-content[elevation="2"]:not(.no-elevate):hover, #card-content[elevation="2"]:not(.no-elevate).focus {
+            #card-content[elevation="2"]:not(.no-elevate):hover, #card-content[elevation="2"]:not(.no-elevate).selected {
                 box-shadow: var(--lumo-box-shadow-l);
             }
 
-            #card-content[elevation="3"]:not(.no-elevate):hover, #card-content[elevation="3"]:not(.no-elevate).focus {
+            #card-content[elevation="3"]:not(.no-elevate):hover, #card-content[elevation="3"]:not(.no-elevate).selected {
                 box-shadow: var(--lumo-box-shadow-xl);
             }
         </style>
@@ -79,11 +79,11 @@
                 this.elevationEnabled = enable;
             }
 
-            setFocus(focus) {
-                if (focus) {
-                    Polymer.dom(this.root).querySelector("#card-content").classList.add('focus');
+            setSelected(selected) {
+                if (selected) {
+                    Polymer.dom(this.root).querySelector("#card-content").classList.add('selected');
                 } else {
-                    Polymer.dom(this.root).querySelector("#card-content").classList.remove('focus');
+                    Polymer.dom(this.root).querySelector("#card-content").classList.remove('selected');
                 }
             }
 

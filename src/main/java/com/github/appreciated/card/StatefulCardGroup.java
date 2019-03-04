@@ -1,33 +1,51 @@
 package com.github.appreciated.card;
 
+import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
-public class StatefulCardGroup<T extends StatefulCard> extends VerticalLayout {
-    StatefulCard currentFocus;
+public class StatefulCardGroup<T extends StatefulCard> extends Composite<VerticalLayout> {
+    private StatefulCard currentFocus;
     private Consumer<T> listener;
+    private List<T> cards = new ArrayList<>();
 
-    public StatefulCardGroup(T... children) {
-        super(children);
-        Arrays.stream(children).forEach(card -> card.addClickListener(event -> setFocus(card)));
-        setMargin(false);
-        setPadding(false);
-        setSpacing(false);
+    public StatefulCardGroup(T... cards) {
+        add(cards);
+        getContent().setMargin(false);
+        getContent().setPadding(false);
+        getContent().setSpacing(false);
     }
 
-    private void setFocus(T nextFocus) {
+    public void add(T... cards) {
+        getContent().add(cards);
+        getContent().add(cards);
+        Arrays.stream(cards).forEach(card -> card.addClickListener(event -> setState(card)));
+        this.cards.addAll(Arrays.asList(cards));
+    }
+
+    public void setState(T nextFocus, boolean notifyListeners) {
         if (nextFocus != currentFocus) {
-            nextFocus.setFocus(true);
+            nextFocus.setSelected(true);
             if (currentFocus != null) {
-                currentFocus.setFocus(false);
+                currentFocus.setSelected(false);
             }
             currentFocus = nextFocus;
-            if (listener != null) {
+            if (listener != null && notifyListeners) {
                 listener.accept(nextFocus);
             }
         }
+    }
+
+    public StatefulCard getState() {
+        return currentFocus;
+    }
+
+    public void setState(T nextFocus) {
+        setState(nextFocus, true);
     }
 
     public StatefulCardGroup<T> withStateChangedListener(Consumer<T> listener) {
@@ -37,5 +55,9 @@ public class StatefulCardGroup<T extends StatefulCard> extends VerticalLayout {
 
     public void setStateChangedListener(Consumer<T> listener) {
         this.listener = listener;
+    }
+
+    public List<T> getCards() {
+        return cards;
     }
 }

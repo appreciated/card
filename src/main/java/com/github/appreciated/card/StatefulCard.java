@@ -119,23 +119,23 @@ public class StatefulCard extends AbstractCard<StatefulCard> implements ClickNot
     }
 
     /**
-     * fluent method for {@link StatefulCard#setFocus(boolean)}
+     * fluent method for {@link StatefulCard#setSelected(boolean)}
      *
-     * @param focus see {@link StatefulCard#setFocus(boolean)}
+     * @param focus see {@link StatefulCard#setSelected(boolean)}
      * @return This element to allow using the method fluently
      */
-    public StatefulCard withFocus(boolean focus) {
-        setFocus(focus);
+    public StatefulCard withSelected(boolean focus) {
+        setSelected(focus);
         return this;
     }
 
     /**
      * Allows to disable the behaviour of elevation change on "hover"(Desktop) / "active"(Mobile).
      *
-     * @param focus whether the card should have focus or not
+     * @param selected whether the card should have focus or not
      */
-    public void setFocus(boolean focus) {
-        getElement().callFunction("setFocus", focus);
+    public void setSelected(boolean selected) {
+        getElement().callFunction("setSelected", selected);
     }
 
 }

@@ -54,7 +54,7 @@ public class DemoView extends VerticalLayout {
         StatefulCard scard = new StatefulCard(
                 new IconItem(getIcon(), "Icon Item title", "Icon Item description")
         ).withWidth("300px");
-        scard.addClickListener(event -> scard.setFocus(true));
+        scard.addClickListener(event -> scard.setSelected(true));
 
         StatefulCardGroup<MyStatefulCard> group = new StatefulCardGroup<>(
                 new MyStatefulCard(1),
@@ -65,7 +65,7 @@ public class DemoView extends VerticalLayout {
                 new MyStatefulCard(6),
                 new MyStatefulCard(7)
         ).withStateChangedListener(statefulCard -> Notification.show("MyStatefulCard " + statefulCard.getI() + " selected!"));
-
+        group.setState(group.getCards().get(3));
         add(
                 c,
                 card,
