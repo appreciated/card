@@ -95,7 +95,7 @@ public class StatefulCard extends AbstractCard<StatefulCard> implements ClickNot
      * Prevents a Component to sent its events to this {@link Component} by sending a method to the client-sided couterpart
      */
     private void preventElementEventPropagation(Component component) {
-        getElement().callFunction("preventElementEventPropagation", component.getElement());
+        getElement().callJsFunction("preventElementEventPropagation", component.getElement());
     }
 
     /**

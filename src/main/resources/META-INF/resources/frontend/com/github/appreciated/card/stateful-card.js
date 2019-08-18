@@ -1,5 +1,4 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@polymer/polymer/externs/polymer-externs.js';
 
 class StatefulCard extends PolymerElement {
 
@@ -75,9 +74,9 @@ class StatefulCard extends PolymerElement {
     ready() {
         super.ready();
         if (this.elevationEnabled === true) {
-            Polymer.dom(this.root).querySelector("#card-content").classList.remove('no-elevate');
+            this.shadowRoot.querySelector("#card-content").classList.remove('no-elevate');
         } else {
-            Polymer.dom(this.root).querySelector("#card-content").classList.add('no-elevate');
+            this.shadowRoot.querySelector("#card-content").classList.add('no-elevate');
         }
     }
 

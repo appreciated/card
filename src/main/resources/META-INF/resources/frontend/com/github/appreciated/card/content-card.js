@@ -1,5 +1,4 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@polymer/polymer/externs/polymer-externs.js';
 
 class Card extends PolymerElement {
     static get is() {
