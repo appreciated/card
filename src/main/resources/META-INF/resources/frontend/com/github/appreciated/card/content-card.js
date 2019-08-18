@@ -1,6 +1,12 @@
-<link href="../../../../bower_components/polymer/polymer.html" rel="import">
-<dom-module id="content-card">
-    <template>
+import {html} from '@polymer/polymer/polymer-element.js';
+
+class Card extends PolymerElement {
+    static get is() {
+        return 'content-card'
+    }
+
+    static get template() {
+        return html`
         <style>
             #card-content {
                 transition: box-shadow 0.35s ease;
@@ -29,15 +35,8 @@
         </style>
         <div id="card-content">
             <slot></slot>
-        </div>
-    </template>
-    <script>
-        class Card extends Polymer.Element {
-            static get is() {
-                return 'content-card'
-            }
-        }
+        </div>`;
+    }
+}
 
-        customElements.define(Card.is, Card);
-    </script>
-</dom-module>
+customElements.define(Card.is, Card);

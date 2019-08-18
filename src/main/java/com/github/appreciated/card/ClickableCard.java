@@ -3,7 +3,7 @@ package com.github.appreciated.card;
 import com.github.appreciated.card.action.ActionButton;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.shared.Registration;
 
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import java.util.stream.Stream;
  * {@link ClickableCard#getIgnoredComponentClasses()} and append your {@link Component} to it.
  */
 @Tag("clickable-card")
-@HtmlImport("frontend://com/github/appreciated/card/clickable-card.html")
+@JsModule("./com/github/appreciated/card/clickable-card.js")
 public class ClickableCard extends AbstractCard<ClickableCard> implements ClickNotifier {
 
     private List<Class> ignoredClasses;

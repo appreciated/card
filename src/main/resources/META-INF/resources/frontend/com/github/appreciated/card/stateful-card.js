@@ -1,6 +1,9 @@
-<link href="../../../../bower_components/polymer/polymer.html" rel="import">
-<dom-module id="stateful-card">
-    <template>
+import {html} from '@polymer/polymer/polymer-element.js';
+
+class StatefulCard extends PolymerElement {
+
+    static get template() {
+        return html`
         <style>
             #card-content {
                 transition: box-shadow 0.35s ease, background-color 0.35s ease;
@@ -57,42 +60,38 @@
         </style>
         <div id="card-content">
             <slot></slot>
-        </div>
-    </template>
-    <script>
-        class StatefulCard extends Polymer.Element {
+        </div>`;
+    }
 
-            static get is() {
-                return 'stateful-card'
-            }
+    static get is() {
+        return 'stateful-card'
+    }
 
-            static get properties() {
-                return {elevationEnabled: Boolean}
-            }
+    static get properties() {
+        return {elevationEnabled: Boolean}
+    }
 
-            ready() {
-                super.ready();
-                if (this.elevationEnabled === true) {
-                    Polymer.dom(this.root).querySelector("#card-content").classList.remove('no-elevate');
-                } else {
-                    Polymer.dom(this.root).querySelector("#card-content").classList.add('no-elevate');
-                }
-            }
-
-            enableElevate(enable) {
-                this.elevationEnabled = enable;
-            }
-
-            preventElementEventPropagation(element) {
-                element.addEventListener('down', function (ev) {
-                    ev.stopPropagation();
-                })
-                element.addEventListener('click', function (ev) {
-                    ev.stopPropagation();
-                })
-            }
+    ready() {
+        super.ready();
+        if (this.elevationEnabled === true) {
+            Polymer.dom(this.root).querySelector("#card-content").classList.remove('no-elevate');
+        } else {
+            Polymer.dom(this.root).querySelector("#card-content").classList.add('no-elevate');
         }
+    }
 
-        customElements.define(StatefulCard.is, StatefulCard);
-    </script>
-</dom-module>
+    enableElevate(enable) {
+        this.elevationEnabled = enable;
+    }
+
+    preventElementEventPropagation(element) {
+        element.addEventListener('down', function (ev) {
+            ev.stopPropagation();
+        })
+        element.addEventListener('click', function (ev) {
+            ev.stopPropagation();
+        })
+    }
+}
+
+customElements.define(StatefulCard.is, StatefulCard);
