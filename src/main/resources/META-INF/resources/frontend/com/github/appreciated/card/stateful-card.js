@@ -1,4 +1,5 @@
-import {html} from '@polymer/polymer/polymer-element.js';
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@polymer/polymer/externs/polymer-externs.js';
 
 class StatefulCard extends PolymerElement {
 
