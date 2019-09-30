@@ -45,7 +45,7 @@ public abstract class AbstractCard<T extends AbstractCard> extends PolymerTempla
     }
 
     /**
-     * Sets the elevation of this card. Value must be be in range from 0-5 (--lumo-box-shadow-s) -> --lumo-box-shadow-xl))
+     * Sets the elevation of this card. Value must be be in range from 0-5 (--lumo-box-shadow-s will be increased to --lumo-box-shadow-xl))
      *
      * @param elevation
      */
