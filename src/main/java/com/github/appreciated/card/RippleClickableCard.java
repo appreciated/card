@@ -53,7 +53,7 @@ public class RippleClickableCard extends ClickableCard implements ClickNotifier 
 
 
     /**
-     * Sets the elevation of this card. Value can only be in range from 0-4 (--lumo-box-shadow-s) -> --lumo-box-shadow-l))
+     * Sets the elevation of this card. Value can only be in range from 0-4 (--lumo-box-shadow-s) will be increased to --lumo-box-shadow-l))
      * 4 because there need to be some space for elevation.
      *
      * @param elevation

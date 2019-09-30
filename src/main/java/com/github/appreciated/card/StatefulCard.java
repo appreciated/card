@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  * The convenience feature this component offers is that you can add a {@link Component} to it which has their own click
  * listener. The click events of this {@link Component} will not be passed to the click listener of the {@link StatefulCard}
  * <p>
- * The {@link StatefulCard} also increases it's "elevation" by one (f.e. var(--lumo-box-shadow-s) -> var(--lumo-box-shadow-m))
+ * The {@link StatefulCard} also increases it's "elevation" by one (f.e. var(--lumo-box-shadow-s) will be increased to var(--lumo-box-shadow-m))
  * to make it clear to the user that it can be clicked. This element behaves in this aspect different on devices that have
  * "ontouchstart" defined than on devices that don't. The elevation raise on "hover" / "active" can be disabled {@link StatefulCard#setElevationOnActionEnabled(boolean)}
  * <p>
