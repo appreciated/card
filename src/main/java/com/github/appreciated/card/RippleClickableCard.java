@@ -11,7 +11,7 @@ import com.vaadin.flow.component.ComponentEventListener;
  * listener. The down events of this {@link Component} will not be passed to the down listener of the {@link PaperRipple}
  * so the {@link PaperRipple} effect will only be visible if you click on an non clickable element.
  * <p>
- * The {@link RippleClickableCard} also increases it's "elevation" by one (f.e. var(--lumo-box-shadow-s) -> var(--lumo-box-shadow-m))
+ * The {@link RippleClickableCard} also increases it's "elevation" by one (f.e. var(--lumo-box-shadow-s) will be increased to var(--lumo-box-shadow-m))
  * to make it clear to the user that it can be clicked. This element behaves in this aspect different on devices that have
  * "ontouchstart" defined than on devices that don't. The elevation raise on "hover" / "active" can be disabled {@link ClickableCard#setElevationOnActionEnabled(boolean)}
  * <p>
