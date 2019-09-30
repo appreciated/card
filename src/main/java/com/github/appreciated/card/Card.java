@@ -5,7 +5,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 
 /**
- * A component very similar to the @{<paper-card> } Webcomponent
+ * A component very similar to the &lt;paper-card&gt; Webcomponent
  */
 @Tag("content-card")
 @JsModule("./com/github/appreciated/card/content-card.js")
