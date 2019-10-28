@@ -27,9 +27,22 @@ public class StatefulCardGroup<T extends StatefulCard> extends Composite<Vertica
         this.cards.addAll(Arrays.asList(cards));
     }
 
+    /**
+     * @param nextFocus The next card to be focused, may be null
+     */
+    public void setState(T nextFocus) {
+        setState(nextFocus, true);
+    }
+
+    public StatefulCard getState() {
+        return currentFocus;
+    }
+
     public void setState(T nextFocus, boolean notifyListeners) {
         if (nextFocus != currentFocus) {
-            nextFocus.setSelected(true);
+            if (nextFocus != null) {
+                nextFocus.setSelected(true);
+            }
             if (currentFocus != null) {
                 currentFocus.setSelected(false);
             }
@@ -38,14 +51,6 @@ public class StatefulCardGroup<T extends StatefulCard> extends Composite<Vertica
                 listener.accept(nextFocus);
             }
         }
-    }
-
-    public StatefulCard getState() {
-        return currentFocus;
-    }
-
-    public void setState(T nextFocus) {
-        setState(nextFocus, true);
     }
 
     public StatefulCardGroup<T> withStateChangedListener(Consumer<T> listener) {

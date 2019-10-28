@@ -9,6 +9,7 @@ import com.github.appreciated.card.label.PrimaryLabel;
 import com.github.appreciated.card.label.SecondaryLabel;
 import com.github.appreciated.card.label.TitleLabel;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
@@ -87,7 +88,8 @@ public class DemoView extends VerticalLayout {
 //                new IconItem(getIcon(), "Test text"),
 //                new IconItem(getIcon(), "Test Title", "Test Description")
                 scard,
-                group
+                group,
+                new Button("Unset StatefulFocus", buttonClickEvent -> group.setState(null))
         );
     }
 
