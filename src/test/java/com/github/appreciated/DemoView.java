@@ -65,7 +65,7 @@ public class DemoView extends VerticalLayout {
                 new MyStatefulCard(5),
                 new MyStatefulCard(6),
                 new MyStatefulCard(7)
-        ).withStateChangedListener(statefulCard -> Notification.show("MyStatefulCard " + statefulCard.getI() + " selected!"));
+        ).withStateChangedListener(statefulCard -> Notification.show("MyStatefulCard " + statefulCard.getId() + " selected!"));
         group.setState(group.getCards().get(3));
         add(
                 c,
@@ -164,11 +164,11 @@ public class DemoView extends VerticalLayout {
     }
 
     class MyStatefulCard extends StatefulCard {
-        private int i;
+        private int identifier;
 
-        public MyStatefulCard(int i) {
-            this.i = i;
-            add(new IconItem(getIcon(), "Icon Item " + i, "Icon Item description sjskdfgjksdfjglöksdfg")
+        public MyStatefulCard(int identifier) {
+            this.identifier = identifier;
+            add(new IconItem(getIcon(), "Icon Item " + identifier, "Icon Item description sjskdfgjksdfjglöksdfg")
                     .withWhiteSpaceNoWrap()
                     .withPadding("5px"));
             withElevation(0)
@@ -176,8 +176,8 @@ public class DemoView extends VerticalLayout {
                     .withBorderRadius("0px");
         }
 
-        public int getI() {
-            return i;
+        public int getIdentifier() {
+            return identifier;
         }
     }
 }
