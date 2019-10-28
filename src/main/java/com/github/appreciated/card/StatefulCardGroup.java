@@ -6,11 +6,12 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class StatefulCardGroup<T extends StatefulCard> extends Composite<VerticalLayout> {
     private StatefulCard currentFocus;
-    private Consumer<T> listener;
+    private Consumer<Optional<T>> listener;
     private List<T> cards = new ArrayList<>();
 
     public StatefulCardGroup(T... cards) {
@@ -39,7 +40,7 @@ public class StatefulCardGroup<T extends StatefulCard> extends Composite<Vertica
     }
 
     public void setState(T nextFocus, boolean notifyListeners) {
-        if (nextFocus != currentFocus) {
+        if (currentFocus != nextFocus) {
             if (nextFocus != null) {
                 nextFocus.setSelected(true);
             }
@@ -48,17 +49,17 @@ public class StatefulCardGroup<T extends StatefulCard> extends Composite<Vertica
             }
             currentFocus = nextFocus;
             if (listener != null && notifyListeners) {
-                listener.accept(nextFocus);
+                listener.accept(Optional.ofNullable(nextFocus));
             }
         }
     }
 
-    public StatefulCardGroup<T> withStateChangedListener(Consumer<T> listener) {
+    public StatefulCardGroup<T> withStateChangedListener(Consumer<Optional<T>> listener) {
         setStateChangedListener(listener);
         return this;
     }
 
-    public void setStateChangedListener(Consumer<T> listener) {
+    public void setStateChangedListener(Consumer<Optional<T>> listener) {
         this.listener = listener;
     }
 

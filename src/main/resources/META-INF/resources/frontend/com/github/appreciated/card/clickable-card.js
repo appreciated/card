@@ -8,7 +8,7 @@ class ClickableCard extends PolymerElement {
     #card-content {
         transition: box-shadow 0.35s ease, background-color 0.35s ease;
         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0);
-        border-radius: var(--lumo-border-radius);
+        border-radius: var(--lumo-border-radius, 4px);
         overflow: hidden;
         position: relative;
         user-select: none;
@@ -23,19 +23,19 @@ class ClickableCard extends PolymerElement {
     }
 
     #card-content[elevation="1"] {
-        box-shadow: var(--lumo-box-shadow-s);
+        box-shadow: var(--lumo-box-shadow-s, var(--material-shadow-elevation-2dp));
     }
 
     #card-content[elevation="2"] {
-        box-shadow: var(--lumo-box-shadow-m);
+        box-shadow: var(--lumo-box-shadow-m, var(--material-shadow-elevation-4dp));
     }
 
     #card-content[elevation="3"] {
-        box-shadow: var(--lumo-box-shadow-l);
+        box-shadow: var(--lumo-box-shadow-l, var(--material-shadow-elevation-8dp));
     }
 
     #card-content:not(.no-elevate).no-touch:hover {
-        box-shadow: var(--lumo-box-shadow-s);
+        box-shadow: var(--lumo-box-shadow-s, var(--material-shadow-elevation-2dp));
     }
 
     #card-content.no-touch:hover {
@@ -43,19 +43,19 @@ class ClickableCard extends PolymerElement {
     }
 
     #card-content[elevation="1"]:not(.no-elevate).no-touch:hover {
-        box-shadow: var(--lumo-box-shadow-m);
+        box-shadow: var(--lumo-box-shadow-m, var(--material-shadow-elevation-4dp));
     }
 
     #card-content[elevation="2"]:not(.no-elevate).no-touch:hover {
-        box-shadow: var(--lumo-box-shadow-l);
+        box-shadow: var(--lumo-box-shadow-l, var(--material-shadow-elevation-8dp));
     }
 
     #card-content[elevation="3"]:not(.no-elevate).no-touch:hover {
-        box-shadow: var(--lumo-box-shadow-xl);
+        box-shadow: var(--lumo-box-shadow-xl, var(--material-shadow-elevation-16dp));
     }
 
     #card-content:not(.no-elevate).touch:not(.no-elevate):active {
-        box-shadow: var(--lumo-box-shadow-s);
+        box-shadow: var(--lumo-box-shadow-s, var(--material-shadow-elevation-2dp));
     }
 
     #card-content.touch:not(.no-elevate):active {
@@ -63,15 +63,15 @@ class ClickableCard extends PolymerElement {
     }
 
     #card-content[elevation="1"]:not(.no-elevate).touch:active {
-        box-shadow: var(--lumo-box-shadow-m);
+        box-shadow: var(--lumo-box-shadow-m, var(--material-shadow-elevation-4dp));
     }
 
     #card-content[elevation="2"]:not(.no-elevate).touch:active {
-        box-shadow: var(--lumo-box-shadow-l);
+        box-shadow: var(--lumo-box-shadow-l, var(--material-shadow-elevation-8dp));
     }
 
     #card-content[elevation="3"]:not(.no-elevate).touch:active {
-        box-shadow: var(--lumo-box-shadow-xl);
+        box-shadow: var(--lumo-box-shadow-xl, var(--material-shadow-elevation-16dp));
     }
 </style>
 <div id="card-content">

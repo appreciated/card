@@ -9,6 +9,7 @@ import com.github.appreciated.card.label.PrimaryLabel;
 import com.github.appreciated.card.label.SecondaryLabel;
 import com.github.appreciated.card.label.TitleLabel;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
@@ -18,8 +19,11 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.BodySize;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.material.Material;
 
-@Route("")
+@Route
+@Theme(Material.class)
 @BodySize(width = "100%", height = "100%")
 public class DemoView extends VerticalLayout {
 
@@ -65,7 +69,7 @@ public class DemoView extends VerticalLayout {
                 new MyStatefulCard(5),
                 new MyStatefulCard(6),
                 new MyStatefulCard(7)
-        ).withStateChangedListener(statefulCard -> Notification.show("MyStatefulCard " + statefulCard.getId() + " selected!"));
+        ).withStateChangedListener(statefulCard -> UI.getCurrent().access(() -> Notification.show("MyStatefulCard " + statefulCard + " selected!")));
         group.setState(group.getCards().get(3));
         add(
                 c,
