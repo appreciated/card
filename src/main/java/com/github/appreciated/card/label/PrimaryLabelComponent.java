@@ -1,8 +1,8 @@
 package com.github.appreciated.card.label;
 
-import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.Span;
 
-public class PrimaryLabelComponent extends Label implements WhiteSpaceLabel {
+public class PrimaryLabelComponent extends Span implements WhiteSpaceLabel {
     public PrimaryLabelComponent() {
         init();
     }
