@@ -22,8 +22,10 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.material.Material;
 
-@Route
-@Theme(Material.class)
+@Route("")
+//@Theme(value = Lumo.class,variant = Lumo.DARK)
+//@Theme(value = Material.class, variant = Material.LIGHT)
+@Theme(value = Material.class, variant = Material.DARK)
 @BodySize(width = "100%", height = "100%")
 public class DemoView extends VerticalLayout {
 

@@ -35,7 +35,7 @@ public class RippleClickableCard extends ClickableCard implements ClickNotifier 
     public RippleClickableCard(ComponentEventListener listener, Component... components) {
         super(listener, components);
         ripple = new PaperRipple();
-        ripple.setColor("var(--lumo-contrast-30pct)");
+        ripple.setColor("var(--lumo-contrast-30pct, var(--material-disabled-color))");
         ripple.getElement().getStyle().set("margin", "unset");
         add(ripple);
     }

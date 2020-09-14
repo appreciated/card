@@ -9,7 +9,7 @@ public class Actions extends Div {
         super(children);
         setWidth("100%");
         getStyle()
-                .set("padding", "var(--lumo-space-xs) calc(var(--lumo-space-s) * 1.3)")
+                .set("padding", "var(--lumo-space-xs, 0.5em) calc(var(--lumo-space-s, 0.5em) * 1.3)")
                 .set("box-sizing", "border-box");
     }
 
